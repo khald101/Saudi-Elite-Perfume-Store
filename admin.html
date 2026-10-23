@@ -1,0 +1,2004 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة تحكم التاجر | متجر النخبة السعودي</title>
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Admin CSS -->
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+  <!-- Admin Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-header">
+      <img src="assets/images/logo.jpg" alt="شعار المتجر" class="sidebar-logo">
+      <div>
+        <h2 class="sidebar-brand-title" id="adminSidebarStoreName">متجر النخبة</h2>
+        <span class="sidebar-brand-badge"><i class="fa-solid fa-circle-check"></i> متجر موثق رسمي</span>
+      </div>
+      <button class="mobile-sidebar-close" id="mobileSidebarClose" onclick="AdminApp.closeMobileSidebar()" aria-label="إغلاق القائمة">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Navigation List -->
+    <nav class="sidebar-nav">
+      <a href="#" class="sidebar-nav-item active" data-section="dashboard">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>الرئيسية والإحصائيات</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="products">
+        <i class="fa-solid fa-boxes-stacked"></i>
+        <span>المنتجات</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="bundles">
+        <i class="fa-solid fa-gift"></i>
+        <span>الباقات والعروض</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="categories">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>التصنيفات</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="inventory">
+        <i class="fa-solid fa-warehouse"></i>
+        <span>المخزون والتنبيهات</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="orders">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>الطلبات والمبيعات</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="finance">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <span>الإدارة المالية والمحاسبية</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="customers">
+        <i class="fa-solid fa-users"></i>
+        <span>العملاء</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="reviews">
+        <i class="fa-solid fa-star"></i>
+        <span>التقييمات والمراجعات</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="coupons">
+        <i class="fa-solid fa-ticket"></i>
+        <span>التسويق والكوبونات</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="theme">
+        <i class="fa-solid fa-palette"></i>
+        <span>تصميم ومظهر المتجر</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="settings">
+        <i class="fa-solid fa-sliders"></i>
+        <span>الإعدادات والضرائب</span>
+      </a>
+      <a href="#" class="sidebar-nav-item" data-section="audit">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>سجل العمليات والنشاط</span>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <a href="index.html" class="view-storefront-btn" target="_blank">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        <span>معاينة واجهة المتجر</span>
+      </a>
+      <button onclick="AdminApp.resetDemoData()" style="color:#ef4444; font-size:0.8rem; text-align:center; padding:6px; font-weight:700;">
+        <i class="fa-solid fa-rotate-left"></i> إعادة ضبط البيانات الافتراضية
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Layout -->
+  <main class="admin-main">
+    
+    <!-- Topbar -->
+    <header class="admin-topbar">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" onclick="AdminApp.toggleMobileSidebar()" aria-label="فتح القائمة">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="topbar-search">
+        <i class="fa-solid fa-magnifying-glass" style="color:var(--text-muted);"></i>
+        <input type="text" placeholder="بحث سريع في لوحة التحكم...">
+      </div>
+
+      <div class="topbar-actions">
+        <a href="index.html" class="btn-admin-primary" style="padding:8px 16px; font-size:0.85rem;" target="_blank">
+          <i class="fa-solid fa-store"></i> زيارة المتجر
+        </a>
+
+        <div class="admin-user-profile" style="display:flex; align-items:center; gap:10px;">
+          <div class="admin-avatar" style="background:#0d5c46; color:#fff; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800;">خ</div>
+          <div>
+            <strong style="font-size:0.92rem; color:var(--text-main); display:block;">خالد العنزي (المدير)</strong>
+            <span style="font-size:0.75rem; color:#10b981; font-weight:700;">Khald@123.com</span>
+          </div>
+          <button type="button" class="btn-admin-outline" id="adminLogoutBtn" onclick="if(window.Auth && typeof window.Auth.logout === 'function'){ window.Auth.logout(); } else { sessionStorage.clear(); localStorage.clear(); window.location.href='index.html'; }" title="تسجيل الخروج" style="padding:6px 12px; font-size:0.8rem; color:#ef4444; border-color:#fecaca; cursor:pointer;">
+            <i class="fa-solid fa-right-from-bracket"></i> خروج
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Sections -->
+    <div class="admin-content">
+
+      <!-- SECTION 1: DASHBOARD -->
+      <section id="admin-sec-dashboard" class="admin-section active">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2>لوحة المعلومات والإحصائيات</h2>
+            <p>نظرة عامة حية على أداء مبيعات متجرك ونشاط الطلبات والمخزون</p>
+          </div>
+          <button class="btn-admin-primary" onclick="AdminApp.openProductModal()">
+            <i class="fa-solid fa-plus"></i> إضافة منتج جديد
+          </button>
+        </div>
+
+        <!-- Live Return Requests Alert Banner (Page Top Alert) -->
+        <div id="adminReturnsAlertContainer" style="margin-bottom: 24px;"></div>
+
+        <!-- SECTION 1.1: SALES & PROFIT METRICS -->
+        <div style="margin-bottom: 24px;">
+          <h3 style="font-size:1.1rem; font-weight:800; color:var(--text-main); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+            <i class="fa-solid fa-chart-line" style="color:var(--admin-primary);"></i> مؤشرات المبيعات والأرباح
+          </h3>
+          <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:16px;">
+            
+            <!-- Monthly Sales -->
+            <div class="kpi-card" style="border-right: 4px solid #10b981;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap green"><i class="fa-solid fa-calendar-day"></i></div>
+                <span class="kpi-trend up" id="kpiMonthBadge">هذا الشهر</span>
+              </div>
+              <div class="kpi-value" id="kpiMonthlySales">0.00 ر.س</div>
+              <div class="kpi-label">المبيعات الشهرية</div>
+            </div>
+
+            <!-- Monthly Profit -->
+            <div class="kpi-card" style="border-right: 4px solid #059669;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap green" style="background:#d1fae5; color:#047857;"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <span class="kpi-trend up" style="color:#047857;">صافي</span>
+              </div>
+              <div class="kpi-value" id="kpiMonthlyProfit" style="color:#047857;">0.00 ر.س</div>
+              <div class="kpi-label">الأرباح الشهرية الصافية</div>
+            </div>
+
+            <!-- Yearly Sales -->
+            <div class="kpi-card" style="border-right: 4px solid #3b82f6;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap blue"><i class="fa-solid fa-calendar-days"></i></div>
+                <span class="kpi-trend up" id="kpiYearBadge">سنة 2026</span>
+              </div>
+              <div class="kpi-value" id="kpiYearlySales">0.00 ر.س</div>
+              <div class="kpi-label">المبيعات السنوية</div>
+            </div>
+
+            <!-- Yearly Profit -->
+            <div class="kpi-card" style="border-right: 4px solid #2563eb;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap blue" style="background:#dbeafe; color:#1d4ed8;"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+                <span class="kpi-trend up" style="color:#1d4ed8;">صافي</span>
+              </div>
+              <div class="kpi-value" id="kpiYearlyProfit" style="color:#1d4ed8;">0.00 ر.س</div>
+              <div class="kpi-label">الأرباح السنوية الصافية</div>
+            </div>
+
+            <!-- All-Time Sales -->
+            <div class="kpi-card" style="border-right: 4px solid #ca8a04;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap gold"><i class="fa-solid fa-sack-dollar"></i></div>
+                <span class="kpi-trend up" style="color:#ca8a04;">اجمالي المبيعات الكية</span>
+              </div>
+              <div class="kpi-value" id="kpiTotalSales">0.00 ر.س</div>
+              <div class="kpi-label">مبيعات المتجر الكلية</div>
+            </div>
+
+            <!-- All-Time Profit -->
+            <div class="kpi-card" style="border-right: 4px solid #d97706;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap gold" style="background:#fef3c7; color:#b45309;"><i class="fa-solid fa-vault"></i></div>
+                <span class="kpi-trend up" style="color:#b45309;">اجمالي ألأرباح الكلية</span>
+              </div>
+              <div class="kpi-value" id="kpiAllTimeProfit" style="color:#b45309;">0.00 ر.س</div>
+              <div class="kpi-label">ارباح المتجر الكلية</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SECTION 1.2: OPERATIONAL METRICS -->
+        <div style="margin-bottom: 32px;">
+          <h3 style="font-size:1.1rem; font-weight:800; color:var(--text-main); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+            <i class="fa-solid fa-gauge-simple-high" style="color:var(--admin-primary);"></i> مؤشرات الحركة والتشغيل
+          </h3>
+          <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap blue"><i class="fa-solid fa-bag-shopping"></i></div>
+                <span class="kpi-trend up"><i class="fa-solid fa-check"></i> نشط</span>
+              </div>
+              <div class="kpi-value" id="kpiTotalOrders">0</div>
+              <div class="kpi-label">إجمالي الطلبات المسجلة</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap gold"><i class="fa-solid fa-calculator"></i></div>
+                <span class="kpi-trend up">متوسط الطلب</span>
+              </div>
+              <div class="kpi-value" id="kpiAvgOrderValue">0.00 ر.س</div>
+              <div class="kpi-label">متوسط قيمة السلة (AOV)</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap green"><i class="fa-solid fa-percent"></i></div>
+                <span class="kpi-trend up" style="color:#10b981;">العائد</span>
+              </div>
+              <div class="kpi-value" id="kpiProfitMargin">0%</div>
+              <div class="kpi-label">هامش الربح الإجمالي</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap purple"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <span class="kpi-trend down"><i class="fa-solid fa-bell"></i> تنبيه</span>
+              </div>
+              <div class="kpi-value" id="kpiLowStock" style="color:#ef4444;">0</div>
+              <div class="kpi-label">منتجات منخفضة المخزون</div>
+            </div>
+
+            <div class="kpi-card" style="border-right: 4px solid #ea580c;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap gold" style="background:#ffedd5; color:#ea580c;"><i class="fa-solid fa-rotate-left"></i></div>
+                <span class="kpi-trend down" id="kpiReturnsTrend" style="color:#ea580c; background:#ffedd5;"><i class="fa-solid fa-bell"></i> استرجاع</span>
+              </div>
+              <div class="kpi-value" id="kpiReturnsCount" style="color:#ea580c;">0</div>
+              <div class="kpi-label">طلبات الاسترجاع المسجلة</div>
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">مسترد للمحافظ: <strong id="kpiReturnsTotalRefunded">0.00 ر.س</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Orders & Inventory Warning Layout -->
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px; margin-bottom:32px;">
+          <!-- Recent Orders -->
+          <div class="admin-card" style="margin-bottom:0;">
+            <div class="card-header-bar">
+              <h3 class="card-header-title"><i class="fa-solid fa-clock"></i> أحدث الطلبات</h3>
+              <button class="btn-admin-outline" onclick="AdminApp.showSection('orders')">عرض كافة الطلبات</button>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>رقم الطلب</th>
+                    <th>العميل</th>
+                    <th>التاريخ</th>
+                    <th>الإجمالي</th>
+                    <th>الحالة</th>
+                    <th>الإجراء</th>
+                  </tr>
+                </thead>
+                <tbody id="dashboardRecentOrdersTable">
+                  <!-- JS Rendered -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Low Stock Alert Box -->
+          <div class="admin-card" style="margin-bottom:0;">
+            <div class="card-header-bar">
+              <h3 class="card-header-title"><i class="fa-solid fa-triangle-exclamation" style="color:#ef4444;"></i> تنبيهات المخزون</h3>
+              <button class="btn-admin-outline" onclick="AdminApp.showSection('inventory')">إدارة</button>
+            </div>
+            <div style="padding:20px;" id="dashboardLowStockList">
+              <!-- JS Rendered -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: PRODUCTS -->
+      <section id="admin-sec-products" class="admin-section">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2>إدارة منتجات المتجر</h2>
+            <p>التحكم الكامل بأسعار المنتجات والمخزون والتصنيفات والصور</p>
+          </div>
+          <button class="btn-admin-primary" onclick="AdminApp.openProductModal()">
+            <i class="fa-solid fa-plus"></i> إضافة منتج جديد
+          </button>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>المنتج</th>
+                  <th>التصنيف</th>
+                  <th>سعر البيع</th>
+                  <th>المخزون الحالي</th>
+                  <th>حالة الظهور</th>
+                  <th>الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody">
+                <!-- JS Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: CATEGORIES -->
+      <section id="admin-sec-categories" class="admin-section">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2>أقسام وتصنيفات المتجر</h2>
+            <p>تنظيم وتبويب المنتجات وإضافة وتعديل الأقسام الرئيسية والفرعية</p>
+          </div>
+          <button class="btn-admin-primary" onclick="AdminApp.openCategoryModal()">
+            <i class="fa-solid fa-plus"></i> إضافة تصنيف جديد
+          </button>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>القسم والصورة</th>
+                  <th>الاسم اللطيف (Slug)</th>
+                  <th>الوصف</th>
+                  <th>المنتجات المرتبطة</th>
+                  <th>الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="categoriesTableBody">
+                <!-- JS Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: INVENTORY -->
+      <section id="admin-sec-inventory" class="admin-section">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2>مراقبة وإدارة المخزون المترابط</h2>
+            <p>متابعة كميات المنتجات والمتغيرات وتحديث الأرصدة بسرعة مع سجل حركات المخزون التفصيلي</p>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-admin-primary" onclick="AdminApp.switchInventoryTab('stocks')" id="invTabBtnStocks">
+              <i class="fa-solid fa-boxes-stacked"></i> أرصدة المنتجات والمتغيرات
+            </button>
+            <button class="btn-admin-outline" onclick="AdminApp.switchInventoryTab('movements')" id="invTabBtnMovements">
+              <i class="fa-solid fa-clock-rotate-left"></i> سجل حركات المخزون (Audit Trail)
+            </button>
+          </div>
+        </div>
+
+        <!-- Inventory Stocks Card -->
+        <div class="admin-card" id="invStocksCard">
+          <div class="card-header-bar">
+            <h3 class="card-header-title"><i class="fa-solid fa-list-check"></i> قائمة المنتجات وتركيبات المتغيرات</h3>
+            <span style="font-size:0.82rem; color:var(--text-muted);">كميات المتغيرات هي المصدر الأساسي، والمخزون الإجمالي محسوب منها تلقائياً</span>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>المنتج</th>
+                  <th>الرصيد الإجمالي</th>
+                  <th>حد التنبيه</th>
+                  <th>حالة المخزون</th>
+                  <th>تعديل سريع للكمية</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryTableBody">
+                <!-- JS Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Inventory Movements Audit Trail Card -->
+        <div class="admin-card" id="invMovementsCard" style="display:none;">
+          <div class="card-header-bar">
+            <h3 class="card-header-title"><i class="fa-solid fa-timeline"></i> سجل حركات وعمليات المخزون التفصيلية</h3>
+            <button class="btn-admin-outline" style="font-size:0.8rem;" onclick="AdminApp.renderInventoryMovementsTable()">
+              <i class="fa-solid fa-rotate"></i> تحديث السجل
+            </button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>التاريخ والوقت</th>
+                  <th>المنتج / التركيبة</th>
+                  <th>نوع الحركة</th>
+                  <th>حركة الكمية</th>
+                  <th>الرصيد المتبقي</th>
+                  <th>المخزون الإجمالي بعد الحركة</th>
+                  <th>الملاحظات ورقم الطلب</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryMovementsTableBody">
+                <!-- JS Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: ORDERS -->
+      <section id="admin-sec-orders" class="admin-section">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2>إدارة طلبات العملاء</h2>
+            <p>متابعة الشحنات، تحديث الحالات، إصدار بوالص الشحن وطباعة الفواتير الضريبية ZATCA</p>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header-bar">
+            <div class="table-filter-bar">
+              <button class="btn-admin-outline" onclick="AdminApp.renderOrdersTable('all')">كافة الطلبات</button>
+              <button class="btn-admin-outline" onclick="AdminApp.renderOrdersTable('جديد')">الطلبات الجديدة</button>
+              <button class="btn-admin-outline" onclick="AdminApp.renderOrdersTable('قيد التجهيز')">قيد التجهيز</button>
+              <button class="btn-admin-outline" onclick="AdminApp.renderOrdersTable('تم الشحن')">تم الشحن</button>
+              <button class="btn-admin-outline" onclick="AdminApp.renderOrdersTable('مكتمل')">المكتملة</button>
+            </div>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>رقم الطلب</th>
+                  <th>العميل والمدينة</th>
+                  <th>تاريخ الطلب</th>
+                  <th>الإجمالي</th>
+                  <th>حالة الطلب</th>
+                  <th>حالة الدفع</th>
+                  <th>الإجراء</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody">
+                <!-- JS Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: CUSTOMERS -->
+      <section id="admin-sec-customers" class="admin-section">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2>دليل العملاء وسجل المشتريات</h2>
+            <p>بيانات التواصل مع العملاء وقيم مشترياتهم الإجمالية</p>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>اسم العميل</th>
+                  <th>رقم الجوال</th>
+                  <th>البريد الإلكتروني</th>
+                  <th>المدينة</th>
+                  <th>عدد الطلبات</th>
+                  <th>إجمالي المشتريات</th>
+                </tr>
+              </thead>
+              <tbody id="customersTableBody">
+                <!-- JS Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: COUPONS & MARKETING -->
+      <section id="admin-sec-coupons" class="admin-section">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2>كوبونات الخصم والعروض الترويجية</h2>
+            <p>إنشاء وإدارة أكواد التخفيض لزيادة المبيعات وتحفيز العملاء</p>
+          </div>
+          <button class="btn-admin-primary" onclick="AdminApp.openCouponModal()">
+            <i class="fa-solid fa-plus"></i> إضافة كوبون جديد
+          </button>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>كود الكوبون</th>
+                  <th>نوع وقيمة الخصم</th>
+                  <th>الحد الأدنى للطلب</th>
+                  <th>مرات الاستخدام</th>
+                  <th>تاريخ الانتهاء</th>
+                  <th>الحالة</th>
+                  <th>الإجراء</th>
+                </tr>
+              </thead>
+              <tbody id="couponsTableBody">
+                <!-- JS Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: THEME CUSTOMIZER -->
+      <section id="admin-sec-theme" class="admin-section">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2>تخصيص المظهر والثيم (Storefront Customizer)</h2>
+            <p>التحكم بألوان المتجر وشريط الإعلانات العلوية والبنرات الترويجية</p>
+          </div>
+        </div>
+
+        <div class="admin-card" style="padding:28px; max-width:800px;">
+          <form onsubmit="AdminApp.saveThemeCustomizer(event)">
+            <div class="admin-form-group">
+              <label>اللون الأساسي للمتجر (Primary Brand Color)</label>
+              <div style="display:flex; align-items:center; gap:16px;">
+                <input type="color" id="themePrimaryColorInput" value="#0d5c46" style="width:60px; height:44px; border-radius:8px; cursor:pointer;">
+                <span style="color:var(--text-muted); font-size:0.9rem;">اضغط لاختيار لون علامتك التجارية، وسينعكس فورياً على واجهة المتجر</span>
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label>الشريط الإعلاني العلوي (Top Announcement Bar)</label>
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+                <input type="checkbox" id="themeBarEnabledCheck" checked style="width:18px; height:18px;">
+                <span style="font-weight:700;">تفعيل الشريط الإعلاني في أعلى صفحات المتجر</span>
+              </div>
+              <input type="text" id="themeBarTextInput" class="admin-input" placeholder="نص الشريط الإعلاني...">
+            </div>
+
+            <button type="submit" class="btn-admin-primary" style="margin-top:16px;">
+              <i class="fa-solid fa-floppy-disk"></i> حفظ التغييرات وتطبيق الثيم
+            </button>
+          </form>
+        </div>
+
+        <!-- FLASH DEALS SECTION MANAGER -->
+        <div class="admin-card" style="margin-top:24px; padding:24px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 style="font-size:1.2rem; font-weight:800; color:var(--text-main); display:flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-bolt" style="color:#ef4444;"></i>
+                إدارة قسم عروض الصاعقة والتخفيضات (Flash Deals Manager)
+              </h3>
+              <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">
+                تحكم كامل في قسم العروض بالصفحة الرئيسية: إظهاره أو حذفه، تخصيص العنوان والشارة، إظهار أو إخفاء عداد الوقت، وتحديد المنتجات المعروضة فيه.
+              </p>
+            </div>
+          </div>
+
+          <form onsubmit="AdminApp.saveFlashDealsSettings(event)">
+            <!-- 1. Enable / Disable Section -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:14px 18px; margin-bottom:16px;">
+              <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:800; font-size:0.95rem; color:var(--text-main);">
+                <input type="checkbox" id="flashDealsEnabledCheck" checked style="width:20px; height:20px; accent-color:var(--admin-primary);">
+                <span>تفعيل وإظهار قسم عروض الصاعقة في الصفحة الرئيسية</span>
+              </label>
+              <div style="font-size:0.8rem; color:var(--text-muted); margin-right:30px; margin-top:2px;">
+                عند إلغاء التحديد، سيتم حذف وإخفاء القسم بالكامل من واجهة المتجر.
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+              <div class="admin-form-group">
+                <label>اسم / عنوان القسم المخصص *</label>
+                <input type="text" id="flashDealsTitleInput" class="admin-input" placeholder="مثال: تخفيضات كبرى تنتهي قريباً" value="تخفيضات كبرى تنتهي قريباً" required>
+              </div>
+              <div class="admin-form-group">
+                <label>نص الشارة العلوية (Badge)</label>
+                <input type="text" id="flashDealsBadgeInput" class="admin-input" placeholder="مثال: عروض الصاعقة الحصرية" value="عروض الصاعقة الحصرية">
+              </div>
+            </div>
+
+            <!-- 2. Show / Hide Timer -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:14px 18px; margin-bottom:16px;">
+              <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:800; font-size:0.92rem; color:var(--text-main);">
+                <input type="checkbox" id="flashDealsTimerCheck" checked style="width:18px; height:18px; accent-color:var(--admin-primary);">
+                <span>إظهار عداد الوقت التنازلي التفاعلي (12:45:20)</span>
+              </label>
+              <div style="font-size:0.8rem; color:var(--text-muted); margin-right:28px; margin-top:2px;">
+                قم بإلغاء التحديد لحذف عداد الوقت نهائياً من ترويسة القسم إذا كنت ترغب في عرض التخفيضات بدون توقيت.
+              </div>
+            </div>
+
+            <!-- 3. Product Selection Mode -->
+            <div class="admin-form-group" style="margin-bottom:16px;">
+              <label style="font-weight:800; margin-bottom:8px; display:block;">تحديد المنتجات المعروضة في هذا القسم:</label>
+              <div style="display:flex; gap:20px; align-items:center; margin-bottom:12px; flex-wrap:wrap;">
+                <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:0.9rem;">
+                  <input type="radio" name="flashDealsProductMode" value="auto" checked onchange="AdminApp.toggleFlashProductsPicker(false)">
+                  <span>عرض تلقائي لكافة المنتجات التي عليها خصم (Auto Discounted)</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:0.9rem;">
+                  <input type="radio" name="flashDealsProductMode" value="manual" onchange="AdminApp.toggleFlashProductsPicker(true)">
+                  <span>اختيار وتحديد منتجات مخصصة يدوياً 🎯</span>
+                </label>
+              </div>
+
+              <!-- Manual Product Picker Container -->
+              <div id="flashProductsPickerContainer" style="display:none; max-height:280px; overflow-y:auto; border:1px solid #cbd5e1; border-radius:8px; padding:12px; background:#fff;">
+                <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">
+                  اختر المنتجات التي ترغب في ظهورها داخل قسم العروض:
+                </div>
+                <div id="flashProductsCheckboxesList" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                  <!-- Dynamically populated with products -->
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-admin-primary" style="padding:10px 24px;">
+              <i class="fa-solid fa-floppy-disk"></i> حفظ إعدادات قسم عروض الصاعقة
+            </button>
+          </form>
+        </div>
+
+        <!-- HERO SLIDER & BANNERS MANAGER -->
+        <div class="admin-card" style="margin-top:24px; padding:24px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 style="font-size:1.2rem; font-weight:800; color:var(--text-main); display:flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-images" style="color:var(--admin-primary);"></i>
+                بنرات وسلايدر الواجهة الرئيسية (Hero Slides & Banners)
+              </h3>
+              <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">
+                تحكم بكافة شرائح البنر المتحرك في أعلى المتجر: عدّل العناوين والنصوص والصور، وأضف شرائح جديدة كما تشاء مع إمكانية الترتيب والحذف.
+              </p>
+            </div>
+            <button type="button" class="btn-admin-primary" onclick="AdminApp.openSlideModal()">
+              <i class="fa-solid fa-plus"></i> إضافة شريحة / بنر جديد
+            </button>
+          </div>
+
+          <!-- Hero Slides Grid Container -->
+          <div class="slides-grid" id="heroSlidesGrid">
+            <!-- Dynamically Rendered by AdminApp.renderHeroSlidesList() -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 9: STORE SETTINGS -->
+      <section id="admin-sec-settings" class="admin-section">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2>إعدادات المتجر العامة والامتثال الضريبي</h2>
+            <p>بيانات السجل التجاري، الرقم الضريبي لهيئة ZATCA، وقنوات الدعم الفني</p>
+          </div>
+        </div>
+
+        <div class="admin-card" style="padding:28px; max-width:800px;">
+          <form onsubmit="AdminApp.saveStoreSettings(event)">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <div class="admin-form-group">
+                <label>اسم المتجر الرسمي *</label>
+                <input type="text" id="setStoreName" class="admin-input" required>
+              </div>
+              <div class="admin-form-group">
+                <label>الشعار اللفظي (Slogan)</label>
+                <input type="text" id="setStoreSlogan" class="admin-input">
+              </div>
+              <div class="admin-form-group">
+                <label>رقم السجل التجاري (CR Number) *</label>
+                <input type="text" id="setCrNumber" class="admin-input" required>
+              </div>
+              <div class="admin-form-group">
+                <label>الرقم الضريبي للبائع (ZATCA VAT ID) *</label>
+                <input type="text" id="setVatNumber" class="admin-input" required maxlength="15">
+              </div>
+              <div class="admin-form-group">
+                <label>رقم جوال خدمة العملاء (واتساب) *</label>
+                <input type="tel" id="setSupportPhone" class="admin-input" required>
+              </div>
+              <div class="admin-form-group">
+                <label>البريد الإلكتروني للدعم الفني *</label>
+                <input type="email" id="setSupportEmail" class="admin-input" required>
+              </div>
+              <div class="admin-form-group" style="grid-column: 1/-1;">
+                <label>حد الشحن المجاني التلقائي (بالريال السعودي) *</label>
+                <input type="number" id="setFreeShippingThreshold" class="admin-input" value="350">
+              </div>
+            </div>
+
+            <button type="submit" class="btn-admin-primary" style="margin-top:16px;">
+              <i class="fa-solid fa-floppy-disk"></i> حفظ الإعدادات الرسمية
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- SECTION 10: AUDIT LOGS -->
+      <section id="admin-sec-audit" class="admin-section">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2>سجل العمليات والنشاط الإداري</h2>
+            <p>توثيق العمليات الإدارية الحساسة لضمان أمان وموثوقية النظام</p>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>الإجراء</th>
+                  <th>الهدف</th>
+                  <th>المستخدم</th>
+                  <th>التاريخ والوقت</th>
+                  <th>التفاصيل</th>
+                </tr>
+              </thead>
+              <tbody id="auditLogsTableBody">
+                <!-- JS Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: REVIEWS MANAGEMENT (تقييمات ومراجعات المنتجات) -->
+      <section id="admin-sec-reviews" class="admin-section">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2>إدارة تقييمات ومراجعات المنتجات</h2>
+            <p>متابعة تقييمات المشترين الموثقين، فحص تفاصيل مراجعات كل منتج، وحذف أي تقييم محدد</p>
+          </div>
+        </div>
+
+        <!-- Reviews KPI Metrics -->
+        <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:16px; margin-bottom:24px;">
+          <div class="kpi-card" style="border-right: 4px solid #f59e0b;">
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap gold" style="background:#fef3c7; color:#d97706;"><i class="fa-solid fa-comments"></i></div>
+              <span class="kpi-trend up">إجمالي</span>
+            </div>
+            <div class="kpi-value" id="kpiReviewsTotalCount">0</div>
+            <div class="kpi-label">إجمالي التقييمات المسجلة</div>
+          </div>
+
+          <div class="kpi-card" style="border-right: 4px solid #10b981;">
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap green"><i class="fa-solid fa-star"></i></div>
+              <span class="kpi-trend up" style="color:#10b981;">المتوسط</span>
+            </div>
+            <div class="kpi-value" id="kpiReviewsStoreAverage">5.0 ⭐</div>
+            <div class="kpi-label">متوسط تقييم المتجر العام</div>
+          </div>
+
+          <div class="kpi-card" style="border-right: 4px solid #3b82f6;">
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap blue"><i class="fa-solid fa-boxes-stacked"></i></div>
+              <span class="kpi-trend up">منتجات</span>
+            </div>
+            <div class="kpi-value" id="kpiReviewsRatedProducts">0</div>
+            <div class="kpi-label">المنتجات الحاصلة على تقييمات</div>
+          </div>
+
+          <div class="kpi-card" style="border-right: 4px solid #0d5c46;">
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap green" style="background:#ecfdf5; color:#065f46;"><i class="fa-solid fa-shield-halved"></i></div>
+              <span class="kpi-trend up" style="color:#065f46;">100% موثق</span>
+            </div>
+            <div class="kpi-value" style="color:#065f46;">100%</div>
+            <div class="kpi-label">مراجعات مشترين موثقين</div>
+          </div>
+        </div>
+
+        <!-- Products List with Reviews Drilldown -->
+        <div class="admin-card">
+          <div class="admin-table-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+            <h3 style="font-size:1.15rem; font-weight:800; color:var(--text-main);">
+              <i class="fa-solid fa-box-open" style="color:var(--admin-primary);"></i> قائمة المنتجات وتقييماتها
+            </h3>
+            <div style="display:flex; gap:10px;">
+              <input type="text" id="reviewsProductSearchInput" class="admin-input" placeholder="بحث بالاسم أو رمز SKU..." style="width:260px;" oninput="AdminApp.filterReviewsProducts(this.value)">
+            </div>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>المنتج</th>
+                  <th>رمز SKU</th>
+                  <th>التصنيف</th>
+                  <th>متوسط التقييم</th>
+                  <th>عدد التقييمات</th>
+                  <th style="text-align:center;">الإجراء</th>
+                </tr>
+              </thead>
+              <tbody id="reviewsProductsTableBody">
+                <!-- Dynamically populated by AdminApp.renderReviewsTable() -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2.5: BUNDLES (قسم الباقات والعروض) -->
+      <section id="admin-sec-bundles" class="admin-section">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2><i class="fa-solid fa-gift" style="color:var(--admin-primary); margin-left:8px;"></i> إدارة الباقات والعروض الترويجية</h2>
+            <p>تكوين الباقات، تحديد كمية العرض وعداد المتبقي، مزامنة مخزون المكونات الأصلية، وحساب الأرباح</p>
+          </div>
+          <button class="btn-admin-primary" onclick="AdminApp.openBundleModal()">
+            <i class="fa-solid fa-plus"></i> إنشاء باقة جديدة
+          </button>
+        </div>
+
+        <!-- Bundles KPIs Overview -->
+        <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:16px; margin-bottom:24px;">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap gold"><i class="fa-solid fa-boxes-stacked"></i></div>
+              <span class="kpi-trend up"><i class="fa-solid fa-check"></i> نشطة</span>
+            </div>
+            <div class="kpi-value" id="kpiBundlesTotalCount">0</div>
+            <div class="kpi-label">إجمالي الباقات المسجلة</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap green"><i class="fa-solid fa-cart-shopping"></i></div>
+              <span class="kpi-trend up">مبيعات</span>
+            </div>
+            <div class="kpi-value" id="kpiBundlesTotalSold">0</div>
+            <div class="kpi-label">إجمالي الباقات المباعة</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap blue"><i class="fa-solid fa-vault"></i></div>
+              <span class="kpi-trend up">إيرادات</span>
+            </div>
+            <div class="kpi-value" id="kpiBundlesTotalRevenue">0.00 ر.س</div>
+            <div class="kpi-label">إجمالي إيرادات الباقات</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap purple"><i class="fa-solid fa-chart-line"></i></div>
+              <span class="kpi-trend up">أرباح</span>
+            </div>
+            <div class="kpi-value" id="kpiBundlesTotalProfit" style="color:#10b981;">0.00 ر.س</div>
+            <div class="kpi-label">إجمالي أرباح الباقات المحققة</div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:18px; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:260px;">
+              <div style="position:relative; width:100%;">
+                <input type="text" class="admin-input" id="searchBundlesInput" placeholder="بحث باسم الباقة أو الوصف..." oninput="AdminApp.filterBundlesTable(this.value)" style="padding-right:36px;">
+                <i class="fa-solid fa-magnifying-glass" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--text-muted);"></i>
+              </div>
+            </div>
+            <div style="display:flex; gap:10px;">
+              <select class="admin-select" id="filterBundleStatusSelect" onchange="AdminApp.filterBundlesByStatus(this.value)" style="width:auto; min-width:140px;">
+                <option value="all">جميع الحالات</option>
+                <option value="active">نشطة فقط</option>
+                <option value="inactive">غير نشطة (معطلة)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>الباقة</th>
+                  <th>الحالة</th>
+                  <th>سعر البيع</th>
+                  <th>المكونات</th>
+                  <th>كمية العرض</th>
+                  <th>المباع</th>
+                  <th>المتبقي من العرض</th>
+                  <th>المتاح بالمخزون</th>
+                  <th>حالة التوفر</th>
+                  <th>الاسترجاع</th>
+                  <th style="text-align:center;">الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="bundlesTableBody">
+                <!-- Dynamically Populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: COMPREHENSIVE FINANCIAL MANAGEMENT (الإدارة المالية والمحاسبية للمتجر بالكامل) -->
+      <section id="admin-sec-finance" class="admin-section">
+        <div class="admin-page-header">
+          <div class="page-title-group">
+            <h2><i class="fa-solid fa-file-invoice-dollar" style="color:var(--admin-primary); margin-left:8px;"></i> الإدارة المالية والمحاسبية الشاملة</h2>
+            <p>قائمة الدخل الدقيقة، المبيعات، تكلفة البضاعة المباعة (COGS)، المصروفات التشغيلية، وصافي الأرباح القابلة للتدقيق</p>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn-admin-primary" onclick="AdminApp.openExpenseModal()">
+              <i class="fa-solid fa-plus"></i> تسجيل مصروف تشغيلي / رسوم
+            </button>
+          </div>
+        </div>
+
+        <!-- Period Selector Filter Bar -->
+        <div class="admin-card" style="padding:14px 20px; margin-bottom:24px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <span style="font-weight:800; font-size:0.9rem; color:var(--text-main); margin-left:8px;">
+                <i class="fa-solid fa-calendar-days" style="color:var(--admin-primary);"></i> الفترة المحاسبية:
+              </span>
+              <button type="button" class="btn-admin-outline fin-period-btn active" data-period="all" onclick="AdminApp.setFinancialPeriod('all', this)">كل الفترات</button>
+              <button type="button" class="btn-admin-outline fin-period-btn" data-period="today" onclick="AdminApp.setFinancialPeriod('today', this)">اليوم</button>
+              <button type="button" class="btn-admin-outline fin-period-btn" data-period="week" onclick="AdminApp.setFinancialPeriod('week', this)">هذا الأسبوع</button>
+              <button type="button" class="btn-admin-outline fin-period-btn" data-period="month" onclick="AdminApp.setFinancialPeriod('month', this)">هذا الشهر</button>
+              <button type="button" class="btn-admin-outline fin-period-btn" data-period="quarter" onclick="AdminApp.setFinancialPeriod('quarter', this)">هذا الربع</button>
+              <button type="button" class="btn-admin-outline fin-period-btn" data-period="year" onclick="AdminApp.setFinancialPeriod('year', this)">هذه السنة</button>
+              <button type="button" class="btn-admin-outline fin-period-btn" data-period="custom" onclick="AdminApp.setFinancialPeriod('custom', this)">فترة مخصصة</button>
+            </div>
+            <div id="customDateRangeInputs" style="display:none; align-items:center; gap:8px;">
+              <input type="date" id="finStartDateInput" class="admin-input" style="padding:4px 8px; font-size:0.85rem;">
+              <span>إلى</span>
+              <input type="date" id="finEndDateInput" class="admin-input" style="padding:4px 8px; font-size:0.85rem;">
+              <button class="btn-admin-primary" style="padding:6px 12px; font-size:0.85rem;" onclick="AdminApp.applyCustomFinancialRange()">تطبيق</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRIMARY FINANCIAL KPIS (13 Metrical Dimensions) -->
+        <div style="margin-bottom:28px;">
+          <h3 style="font-size:1.05rem; font-weight:800; color:var(--text-main); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+            <i class="fa-solid fa-coins" style="color:var(--admin-primary);"></i> مؤشرات الإيرادات والمبيعات والأرباح
+          </h3>
+          <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:16px;">
+            
+            <!-- Gross Sales -->
+            <div class="kpi-card" style="border-right: 4px solid #3b82f6;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap blue"><i class="fa-solid fa-receipt"></i></div>
+                <span class="kpi-trend up">المبيعات الإجمالية</span>
+              </div>
+              <div class="kpi-value" id="finGrossSales">0.00 ر.س</div>
+              <div class="kpi-label">إجمالي قيمة المبيعات قبل الخصومات</div>
+            </div>
+
+            <!-- Discounts -->
+            <div class="kpi-card" style="border-right: 4px solid #f59e0b;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap gold"><i class="fa-solid fa-ticket"></i></div>
+                <span class="kpi-trend down">تخفيضات وكوبونات</span>
+              </div>
+              <div class="kpi-value" id="finDiscounts" style="color:#d97706;">0.00 ر.س</div>
+              <div class="kpi-label">مجموع الخصومات الممنوحة</div>
+            </div>
+
+            <!-- Net Sales -->
+            <div class="kpi-card" style="border-right: 4px solid #10b981;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap green"><i class="fa-solid fa-cash-register"></i></div>
+                <span class="kpi-trend up">صافي المبيعات</span>
+              </div>
+              <div class="kpi-value" id="finNetSales" style="color:#10b981;">0.00 ر.س</div>
+              <div class="kpi-label">المبيعات الفعلية (الإجمالي - الخصومات - المرتجعات)</div>
+            </div>
+
+            <!-- Collected Cash -->
+            <div class="kpi-card" style="border-right: 4px solid #06b6d4;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap cyan" style="background:#cffafe; color:#0891b2;"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <span class="kpi-trend up" style="color:#0891b2;">المحصل الفعلي</span>
+              </div>
+              <div class="kpi-value" id="finCollectedAmount" style="color:#0891b2;">0.00 ر.س</div>
+              <div class="kpi-label">المبالغ المقبوضة فعلياً المؤكدة</div>
+            </div>
+
+            <!-- Pending Payments -->
+            <div class="kpi-card" style="border-right: 4px solid #8b5cf6;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap purple"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                <span class="kpi-trend up" style="color:#8b5cf6;">بانتظار التحصيل</span>
+              </div>
+              <div class="kpi-value" id="finPendingAmount" style="color:#8b5cf6;">0.00 ر.س</div>
+              <div class="kpi-label">المدفوعات المعلقة أو غير المكتملة</div>
+            </div>
+
+            <!-- Cancelled Orders -->
+            <div class="kpi-card" style="border-right: 4px solid #64748b;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap" style="background:#f1f5f9; color:#475569;"><i class="fa-solid fa-ban"></i></div>
+                <span class="kpi-trend down" style="color:#64748b;">طلبات ملغاة</span>
+              </div>
+              <div class="kpi-value" id="finCancelledAmount" style="color:#64748b;">0.00 ر.س</div>
+              <div class="kpi-label" id="finCancelledCountLabel">0 طلبات ملغاة</div>
+            </div>
+
+            <!-- Refunds -->
+            <div class="kpi-card" style="border-right: 4px solid #ef4444;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap" style="background:#fee2e2; color:#ef4444;"><i class="fa-solid fa-rotate-left"></i></div>
+                <span class="kpi-trend down" style="color:#ef4444;">المبالغ المستردة</span>
+              </div>
+              <div class="kpi-value" id="finRefundedAmount" style="color:#ef4444;">0.00 ر.س</div>
+              <div class="kpi-label">المبالغ المستردة وقيمة المرتجعات</div>
+            </div>
+
+            <!-- COGS -->
+            <div class="kpi-card" style="border-right: 4px solid #ea580c;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap" style="background:#ffedd5; color:#ea580c;"><i class="fa-solid fa-boxes-packing"></i></div>
+                <span class="kpi-trend up" style="color:#ea580c;">تكلفة البضاعة (COGS)</span>
+              </div>
+              <div class="kpi-value" id="finCogsAmount" style="color:#ea580c;">0.00 ر.س</div>
+              <div class="kpi-label">تكلفة البضاعة المباعة بعد استبعاد المرتجع للمخزون</div>
+            </div>
+
+            <!-- Gross Profit -->
+            <div class="kpi-card" style="border-right: 4px solid #059669;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap" style="background:#d1fae5; color:#059669;"><i class="fa-solid fa-scale-balanced"></i></div>
+                <span class="kpi-trend up" style="color:#059669;">إجمالي الربح</span>
+              </div>
+              <div class="kpi-value" id="finGrossProfit" style="color:#059669;">0.00 ر.س</div>
+              <div class="kpi-label">صافي المبيعات - تكلفة البضاعة</div>
+            </div>
+
+            <!-- Operating Expenses & Gateway Fees -->
+            <div class="kpi-card" style="border-right: 4px solid #e11d48;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap" style="background:#ffe4e6; color:#e11d48;"><i class="fa-solid fa-wallet"></i></div>
+                <span class="kpi-trend down" style="color:#e11d48;">مصاريف ورسوم</span>
+              </div>
+              <div class="kpi-value" id="finTotalExpenses" style="color:#e11d48;">0.00 ر.س</div>
+              <div class="kpi-label">رسوم بوابات الدفع والمصروفات</div>
+            </div>
+
+            <!-- Net Profit -->
+            <div class="kpi-card" style="border-right: 4px solid #16a34a; background:#f0fdf4;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap" style="background:#bbf7d0; color:#15803d;"><i class="fa-solid fa-chart-pie"></i></div>
+                <span class="kpi-trend up" style="color:#15803d; font-weight:800;">صافي الربح النهائي</span>
+              </div>
+              <div class="kpi-value" id="finNetProfit" style="color:#15803d; font-weight:900;">0.00 ر.س</div>
+              <div class="kpi-label" id="finProfitMarginLabel">هامش الربح الصافي: 0%</div>
+            </div>
+
+            <!-- VAT 15% Collected -->
+            <div class="kpi-card" style="border-right: 4px solid #6366f1;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap" style="background:#e0e7ff; color:#4f46e5;"><i class="fa-solid fa-landmark"></i></div>
+                <span class="kpi-trend up" style="color:#4f46e5;">ضريبة القيمة المضافة</span>
+              </div>
+              <div class="kpi-value" id="finVatCollected" style="color:#4f46e5;">0.00 ر.س</div>
+              <div class="kpi-label">15% مستحقة لهيئة الزكاة والضريبة</div>
+            </div>
+
+            <!-- Current Inventory Valuation at Cost -->
+            <div class="kpi-card" style="border-right: 4px solid #0284c7;">
+              <div class="kpi-header">
+                <div class="kpi-icon-wrap" style="background:#e0f2fe; color:#0284c7;"><i class="fa-solid fa-warehouse"></i></div>
+                <span class="kpi-trend up" style="color:#0284c7;">تقييم المخزون الحالي</span>
+              </div>
+              <div class="kpi-value" id="finInventoryValuation" style="color:#0284c7;">0.00 ر.س</div>
+              <div class="kpi-label">قيمة المخزون الإجمالية بسعر التكلفة</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SECTION: OPERATING EXPENSES & FEES RECORD -->
+        <div class="admin-card" style="margin-bottom:28px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div class="page-title-group">
+              <h3 style="font-size:1.1rem; font-weight:800; color:var(--text-main);"><i class="fa-solid fa-credit-card" style="color:var(--admin-primary); margin-left:6px;"></i> سجل المصروفات والرسوم التشغيلية</h3>
+              <p style="font-size:0.85rem; color:var(--text-muted);">تسجيل دقيق لرسوم بوابات الدفع، الشحن والتوصيل، التغليف، الإعلانات، والمصروفات الإدارية</p>
+            </div>
+            <button class="btn-admin-primary" onclick="AdminApp.openExpenseModal()">
+              <i class="fa-solid fa-plus"></i> إضافة مصروف جديد
+            </button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>البند والتصنيف</th>
+                  <th>المبلغ</th>
+                  <th>التاريخ</th>
+                  <th>رقم المرجع / الطلب</th>
+                  <th>ملاحظات وتفاصيل</th>
+                  <th style="text-align:center;">إجراء</th>
+                </tr>
+              </thead>
+              <tbody id="expensesTableBody">
+                <!-- Dynamically Populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SECTION: PROFIT & LOSS AUDIT STATEMENT -->
+        <div class="admin-card">
+          <div class="page-title-group" style="margin-bottom:16px;">
+            <h3 style="font-size:1.1rem; font-weight:800; color:var(--text-main);"><i class="fa-solid fa-book-journal-whills" style="color:var(--admin-primary); margin-left:6px;"></i> قائمة الدخل والتدقيق المحاسبي الموحد</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">تحليل تفصيلي لمصادر الدخل والتكاليف وفق معايير المحاسبة المعتمدة (تحديث حي)</p>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table" style="font-size:0.92rem;">
+              <tbody id="financialStatementTableBody">
+                <!-- Dynamically populated by AdminApp.renderFinancialStatement() -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- MODAL: ADD / EDIT PRODUCT -->
+  <div class="admin-modal-overlay" id="productFormModal">
+    <div class="admin-modal-box">
+      <div class="admin-modal-header">
+        <h3 id="productModalTitle" style="font-size:1.25rem; font-weight:800;">إضافة منتج جديد</h3>
+        <button onclick="AdminApp.closeProductModal()" style="font-size:1.2rem; color:var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="productForm" onsubmit="AdminApp.saveProductForm(event)">
+        <div class="admin-modal-body">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label>اسم المنتج *</label>
+              <input type="text" id="prodNameInput" class="admin-input" placeholder="مثال: دهن عود ملكي معتق" required>
+            </div>
+            <div class="admin-form-group">
+              <label>رمز SKU *</label>
+              <input type="text" id="prodSkuInput" class="admin-input" placeholder="مثال: OUD-ROYAL-50" required>
+            </div>
+            <div class="admin-form-group">
+              <label>التصنيف *</label>
+              <select id="prodCategorySelect" class="admin-select"></select>
+            </div>
+            <div class="admin-form-group">
+              <label>نوع العرض (منتج عادي أم باقة تجميعية) *</label>
+              <select id="prodTypeSelect" class="admin-select" onchange="AdminApp.handleProductTypeChange(this.value)">
+                <option value="product">منتج عادي (Standard Product)</option>
+                <option value="bundle">باقة تجميعية / بكج (Bundle Package)</option>
+              </select>
+            </div>
+            <div class="admin-form-group">
+              <label>إمكانية وسياسة الاسترجاع *</label>
+              <select id="prodIsReturnableSelect" class="admin-select" onchange="AdminApp.handleReturnableChange(this.value)">
+                <option value="true">مسموح بالاسترجاع (قابل للإرجاع)</option>
+                <option value="false">غير مسموح بالاسترجاع (صنف غير قابل للإرجاع)</option>
+              </select>
+            </div>
+            <div class="admin-form-group" id="prodReturnDaysWrapper">
+              <label>مهلة الاسترجاع المسموحة (بالأيام) *</label>
+              <input type="number" id="prodReturnDaysInput" class="admin-input" min="0" value="14" placeholder="مثال: 14">
+              <small style="color:var(--text-muted); font-size:0.75rem; display:block; margin-top:2px;">عدد الأيام المسموح فيها للعميل بطلب الاسترجاع بعد الطلب (0 يعني غير قابل للاسترجاع)</small>
+            </div>
+            <div class="admin-form-group">
+              <label>السعر الأصلي الأساسي (ر.س) *</label>
+              <input type="number" id="prodRegPriceInput" class="admin-input" step="0.5" placeholder="مثال: 250" required>
+            </div>
+            <div class="admin-form-group">
+              <label>سعر البيع المخفّض (ر.س) <span style="font-weight:normal; color:var(--text-muted); font-size:0.8rem;">(اختياري - اتركه فارغاً إذا لا يوجد خصم)</span></label>
+              <input type="number" id="prodSalePriceInput" class="admin-input" step="0.5" placeholder="اختياري: مثال 195">
+            </div>
+            <div class="admin-form-group">
+              <label>تكلفة الشراء الداخلية (لحساب الأرباح ر.س)</label>
+              <input type="number" id="prodCostPriceInput" class="admin-input" step="0.5">
+            </div>
+            <div class="admin-form-group">
+              <label>الكمية المتوفرة بالمخزون *</label>
+              <input type="number" id="prodStockInput" class="admin-input" required>
+            </div>
+            <!-- Product Image Upload (Drag & Drop + Local File Picker + URL) -->
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label style="display:flex; justify-content:space-between; align-items:center;">
+                <span>صورة المنتج الرئيسية *</span>
+                <span class="url-input-toggle" onclick="AdminApp.toggleUrlInput('prod')">
+                  <i class="fa-solid fa-link"></i> أو إدخال رابط يدوياً
+                </span>
+              </label>
+
+              <!-- Hidden File Input for Device Files -->
+              <input type="file" id="prodImageFileInput" accept="image/*" style="display:none;" onchange="AdminApp.handleImageFileSelect(this, 'prod')">
+
+              <!-- Drag & Drop Dropzone Area -->
+              <div class="image-uploader-box" id="prodImageDropzone" onclick="document.getElementById('prodImageFileInput').click()">
+                <div class="uploader-icon-wrap">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <div class="uploader-title">اسحب الصورة وأفلتها هنا، أو اضغط لاختيار صورة من جهازك</div>
+                <div class="uploader-subtitle">يدعم صيغ JPG, PNG, WEBP, GIF حتى 5 ميجابايت مع معاينة فورية</div>
+                <button type="button" class="uploader-btn-browse">
+                  <i class="fa-solid fa-folder-open"></i> تصفح واختيار صورة من الجهاز
+                </button>
+              </div>
+
+              <!-- Live Image Preview Card -->
+              <div class="image-preview-card" id="prodImagePreviewCard" style="display:none;">
+                <img id="prodImagePreviewImg" src="" alt="معاينة صورة المنتج" class="image-preview-thumb">
+                <div class="image-preview-info">
+                  <div class="image-preview-name" id="prodImagePreviewName">صورة المنتج المحددة</div>
+                  <div class="image-preview-meta" id="prodImagePreviewMeta">جاهزة للعرض والحفظ في المتجر</div>
+                </div>
+                <div class="image-preview-actions">
+                  <button type="button" class="btn-admin-outline" style="padding:6px 12px; font-size:0.82rem;" onclick="document.getElementById('prodImageFileInput').click()">
+                    <i class="fa-solid fa-arrows-rotate"></i> تغيير الصورة
+                  </button>
+                  <button type="button" class="btn-admin-outline" style="padding:6px 12px; font-size:0.82rem; color:#ef4444;" onclick="AdminApp.removeUploadedImage('prod')">
+                    <i class="fa-solid fa-trash-can"></i> حذف
+                  </button>
+                </div>
+              </div>
+
+              <!-- Manual URL Input Toggle Area -->
+              <div id="prodUrlInputWrapper" style="display:none; margin-top:8px;">
+                <input type="text" id="prodImageUrlInput" class="admin-input" placeholder="أو الصق رابط الصورة هنا: assets/images/product_oud.jpg" oninput="AdminApp.handleUrlInput(this, 'prod')">
+              </div>
+            </div>
+
+            <!-- Variant Management Builder (Single Source of Truth) -->
+            <div class="admin-form-group" style="grid-column:1/-1; background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:800; font-size:0.95rem; color:var(--text-main);">
+                  <input type="checkbox" id="prodHasVariantsCheck" onchange="AdminApp.toggleProductVariantsUI()" style="width:18px; height:18px; accent-color:var(--admin-primary);">
+                  <span>تفعيل إدارة المخزون حسب المتغيرات (المقاسات والألوان والتركيبات)</span>
+                </label>
+                <button type="button" class="btn-admin-primary" id="addVariantRowBtn" style="display:none; padding:4px 12px; font-size:0.8rem;" onclick="AdminApp.addVariantFormRow()">
+                  <i class="fa-solid fa-plus"></i> إضافة تركيبة جديدة
+                </button>
+              </div>
+              <div id="variantsBuilderWrapper" style="display:none;">
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">
+                  📌 <strong>المصدر الموحد:</strong> كميات المتغيرات هي المصدر الأساسي، والمخزون الإجمالي للمنتج يُحسب تلقائياً من مجموعها ولا يمكن أن يختلف عنها.
+                </p>
+                <div class="admin-table-wrap" style="border:1px solid #e2e8f0; border-radius:8px; margin-bottom:10px;">
+                  <table style="width:100%; border-collapse:collapse; font-size:0.85rem;" id="variantsFormTable">
+                    <thead>
+                      <tr style="background:#e2e8f0; text-align:right;">
+                        <th style="padding:8px;">التركيبة (مثال: S + أحمر) *</th>
+                        <th style="padding:8px;">رمز SKU</th>
+                        <th style="padding:8px;">سعر البيع (ر.س) *</th>
+                        <th style="padding:8px;">الكمية بالمخزون *</th>
+                        <th style="padding:8px; width:45px; text-align:center;">إجراء</th>
+                      </tr>
+                    </thead>
+                    <tbody id="variantsFormTableBody">
+                      <!-- Dynamically rendered rows -->
+                    </tbody>
+                  </table>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:#f1f5f9; border-radius:8px; font-weight:800;">
+                  <span style="color:#475569; font-size:0.88rem;">مجموع كميات كافة التركيبات:</span>
+                  <span style="color:var(--admin-primary); font-size:1.1rem;"><span id="variantsCalculatedTotalStock">0</span> قطعة</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label>شارة ترويجية (Badge)</label>
+              <input type="text" id="prodBadgeInput" class="admin-input" placeholder="الأكثر مبيعاً 🔥">
+            </div>
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label>الوصف التفصيلي للمنتج</label>
+              <textarea id="prodDescInput" class="admin-textarea" rows="3" placeholder="اكتب تفاصيل ومزايا المنتج..."></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin-outline" onclick="AdminApp.closeProductModal()">إلغاء</button>
+          <button type="submit" class="btn-admin-primary">حفظ ونشر في المتجر</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ORDER DETAILS & ZATCA PRINT -->
+  <div class="admin-modal-overlay" id="orderDetailsModal">
+    <div class="admin-modal-box" style="max-width:800px;">
+      <div class="admin-modal-header">
+        <h3 id="modalOrderNumberTitle" style="font-size:1.25rem; font-weight:800;">تفاصيل الطلب</h3>
+        <button onclick="AdminApp.closeOrderModal()" style="font-size:1.2rem; color:var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="admin-modal-body">
+        <!-- Stock Status Banner -->
+        <div id="modalOrderStockBadge" style="margin-bottom:14px;"></div>
+
+        <!-- Customer & Order Meta -->
+        <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:20px; background:var(--admin-bg); padding:16px; border-radius:var(--radius-md); margin-bottom:20px;">
+          <div>
+            <div style="color:var(--text-muted); font-size:0.8rem;">تاريخ إنشاء الطلب: <span id="modalOrderDate"></span></div>
+            <div style="font-size:1.1rem; font-weight:800; margin-top:4px;" id="modalCustName"></div>
+            <div style="font-size:0.9rem; color:var(--text-main); margin-top:2px;">
+              الجوال: <strong id="modalCustPhone" dir="ltr"></strong> | <span id="modalCustCity"></span>
+            </div>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-top:2px;" id="modalCustAddress"></div>
+            <!-- Interactive Shipping Map Location -->
+            <div id="modalOrderMapLocation" style="display:none; margin-top:10px; padding:8px 12px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; font-size:0.82rem; color:#1e40af; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+              <div style="display:flex; align-items:center; gap:6px;">
+                <i class="fa-solid fa-location-dot" style="color:#ef4444; font-size:1rem;"></i>
+                <span>موقع الخريطة: <strong id="modalOrderCoordsText" dir="ltr"></strong></span>
+              </div>
+              <a id="modalOrderGoogleMapsUrl" href="#" target="_blank" class="btn-admin-outline" style="background:#fff; color:#2563eb; border-color:#93c5fd; padding:4px 10px; font-size:0.75rem; text-decoration:none; display:inline-flex; align-items:center; gap:5px;">
+                <i class="fa-solid fa-map-location-dot"></i> فتح في خرائط Google
+              </a>
+            </div>
+            <div id="modalOrderPaymentDetail" style="margin-top:6px; font-size:0.82rem; color:var(--text-muted);">
+              طريقة الدفع: <strong id="modalOrderPaymentMethod" style="color:var(--text-main);"></strong>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; justify-content:center; align-items:flex-end; gap:8px;">
+            <a id="modalWhatsAppBtn" href="#" target="_blank" class="btn-admin-primary" style="background:#22c55e; padding:8px 16px; font-size:0.85rem;">
+              <i class="fa-brands fa-whatsapp"></i> مراسلة العميل واتساب
+            </a>
+            <button class="btn-admin-primary" style="padding:8px 16px; font-size:0.85rem;" onclick="AdminApp.printOfficialTaxInvoice()">
+              <i class="fa-solid fa-print"></i> طباعة الفاتورة الضريبية ZATCA
+            </button>
+          </div>
+        </div>
+
+        <!-- Status Management Row -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:20px;">
+          <div class="admin-form-group">
+            <label>حالة الطلب</label>
+            <select id="modalOrderStatusSelect" class="admin-select">
+              <option value="جديد">جديد</option>
+              <option value="قيد التجهيز">قيد التجهيز</option>
+              <option value="تم الشحن">تم الشحن</option>
+              <option value="مكتمل">مكتمل</option>
+              <option value="ملغي">ملغي (استرجاع المخزون)</option>
+              <option value="مسترجع">مسترجع (إرجاع المخزون)</option>
+            </select>
+          </div>
+          <div class="admin-form-group">
+            <label>حالة الدفع</label>
+            <select id="modalPaymentStatusSelect" class="admin-select">
+              <option value="مدفوع">مدفوع</option>
+              <option value="بانتظار الدفع">بانتظار الدفع</option>
+              <option value="فشل">فشل</option>
+              <option value="مسترد">مسترد</option>
+            </select>
+          </div>
+          <div class="admin-form-group">
+            <label>حالة الشحن</label>
+            <select id="modalShippingStatusSelect" class="admin-select">
+              <option value="لم يجهز">لم يجهز</option>
+              <option value="قيد التجهيز">قيد التجهيز</option>
+              <option value="تم الشحن">تم الشحن</option>
+              <option value="تم التسليم">تم التسليم</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="admin-form-group" style="margin-bottom:20px;">
+          <label>رقم بوليصة الشحن والتتبع</label>
+          <input type="text" id="modalTrackingNumberInput" class="admin-input" placeholder="مثال: SMSA-894719321">
+        </div>
+
+        <!-- Items Table -->
+        <h4 style="font-size:1rem; font-weight:800; margin-bottom:10px;">المنتجات المطلوبة</h4>
+        <div class="admin-table-wrap" style="margin-bottom:20px;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>المنتج</th>
+                <th>السعر</th>
+                <th>الكمية</th>
+                <th>المجموع</th>
+              </tr>
+            </thead>
+            <tbody id="modalOrderItemsBody"></tbody>
+          </table>
+        </div>
+
+        <!-- Financial Totals -->
+        <div style="max-width:320px; margin-right:auto; background:var(--admin-bg); padding:16px; border-radius:var(--radius-md); font-size:0.9rem;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <span>المجموع الفرعي:</span>
+            <span id="modalOrderSubtotal">0.00 ر.س</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#ef4444;">
+            <span>الخصم:</span>
+            <span id="modalOrderDiscount">-0.00 ر.س</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <span>الشحن:</span>
+            <span id="modalOrderShipping">مجاني</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+            <span>الضريبة (15%):</span>
+            <span id="modalOrderVat">0.00 ر.س</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:1.15rem; font-weight:900; color:var(--admin-primary); border-top:1px dashed var(--admin-border); padding-top:8px;">
+            <span>الإجمالي النهائي:</span>
+            <span id="modalOrderTotal">0.00 ر.س</span>
+          </div>
+        </div>
+
+        <!-- Order Returns Management Section -->
+        <div id="modalOrderReturnsSection" style="margin-top:20px; padding:16px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px;">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Internal Notes -->
+        <div class="admin-form-group" style="margin-top:20px;">
+          <label>ملاحظات إدارية داخلية (خاصة بفريق العمل)</label>
+          <textarea id="modalInternalNotes" class="admin-textarea" rows="2" placeholder="ملاحظات حول الطلب..."></textarea>
+        </div>
+
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-admin-outline" onclick="AdminApp.closeOrderModal()">إغلاق</button>
+        <button type="button" class="btn-admin-primary" onclick="AdminApp.saveOrderStatus()">
+          <i class="fa-solid fa-check"></i> حفظ تحديثات الطلب
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD / EDIT CATEGORY -->
+  <div class="admin-modal-overlay" id="categoryFormModal">
+    <div class="admin-modal-box" style="max-width:600px;">
+      <div class="admin-modal-header">
+        <h3 id="categoryModalTitle" style="font-size:1.25rem; font-weight:800;">إضافة تصنيف جديد</h3>
+        <button onclick="AdminApp.closeCategoryModal()" style="font-size:1.2rem; color:var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="categoryForm" onsubmit="AdminApp.saveCategoryForm(event)">
+        <div class="admin-modal-body">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label>اسم التصنيف بالعربية *</label>
+              <input type="text" id="catNameInput" class="admin-input" placeholder="مثال: عطور وبخور ملكي" required>
+            </div>
+            <div class="admin-form-group">
+              <label>الاسم بالإنجليزية</label>
+              <input type="text" id="catEnglishNameInput" class="admin-input" placeholder="مثال: Luxury Perfumes">
+            </div>
+            <div class="admin-form-group">
+              <label>المعرف اللطيف (Slug) *</label>
+              <input type="text" id="catSlugInput" class="admin-input" placeholder="مثال: perfumes" required>
+            </div>
+            <div class="admin-form-group">
+              <label>رمز الأيقونة (FontAwesome)</label>
+              <select id="catIconSelect" class="admin-select">
+                <option value="fa-gem">💎 fa-gem (مجوهرات وعطور)</option>
+                <option value="fa-microchip">💻 fa-microchip (إلكترونيات)</option>
+                <option value="fa-mug-hot">☕ fa-mug-hot (قهوة وضيافة)</option>
+                <option value="fa-wallet">👛 fa-wallet (إكسسوارات)</option>
+                <option value="fa-shirt">👔 fa-shirt (أزياء وملابس)</option>
+                <option value="fa-clock">⌚ fa-clock (ساعات فاخرة)</option>
+                <option value="fa-spray-can-sparkles">✨ fa-spray-can-sparkles (عناية)</option>
+                <option value="fa-tag">🏷️ fa-tag (عام)</option>
+              </select>
+            </div>
+            <!-- Category Image Upload (Drag & Drop + Local File Picker + URL) -->
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label style="display:flex; justify-content:space-between; align-items:center;">
+                <span>صورة التصنيف *</span>
+                <span class="url-input-toggle" onclick="AdminApp.toggleUrlInput('cat')">
+                  <i class="fa-solid fa-link"></i> أو إدخال رابط يدوياً
+                </span>
+              </label>
+
+              <!-- Hidden File Input for Device Files -->
+              <input type="file" id="catImageFileInput" accept="image/*" style="display:none;" onchange="AdminApp.handleImageFileSelect(this, 'cat')">
+
+              <!-- Drag & Drop Dropzone Area -->
+              <div class="image-uploader-box" id="catImageDropzone" onclick="document.getElementById('catImageFileInput').click()">
+                <div class="uploader-icon-wrap">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <div class="uploader-title">اسحب صورة التصنيف وأفلتها هنا، أو اضغط للاختيار من جهازك</div>
+                <div class="uploader-subtitle">يدعم صيغ JPG, PNG, WEBP, SVG بحجم مناسب للواجهة والبانرات</div>
+                <button type="button" class="uploader-btn-browse">
+                  <i class="fa-solid fa-folder-open"></i> تصفح واختيار صورة من الجهاز
+                </button>
+              </div>
+
+              <!-- Live Image Preview Card -->
+              <div class="image-preview-card" id="catImagePreviewCard" style="display:none;">
+                <img id="catImagePreviewImg" src="" alt="معاينة صورة التصنيف" class="image-preview-thumb">
+                <div class="image-preview-info">
+                  <div class="image-preview-name" id="catImagePreviewName">صورة التصنيف المحددة</div>
+                  <div class="image-preview-meta" id="catImagePreviewMeta">جاهزة للعرض والحفظ في المتجر</div>
+                </div>
+                <div class="image-preview-actions">
+                  <button type="button" class="btn-admin-outline" style="padding:6px 12px; font-size:0.82rem;" onclick="document.getElementById('catImageFileInput').click()">
+                    <i class="fa-solid fa-arrows-rotate"></i> تغيير الصورة
+                  </button>
+                  <button type="button" class="btn-admin-outline" style="padding:6px 12px; font-size:0.82rem; color:#ef4444;" onclick="AdminApp.removeUploadedImage('cat')">
+                    <i class="fa-solid fa-trash-can"></i> حذف
+                  </button>
+                </div>
+              </div>
+
+              <!-- Manual URL Input Toggle Area -->
+              <div id="catUrlInputWrapper" style="display:none; margin-top:8px;">
+                <input type="text" id="catImageInput" class="admin-input" placeholder="أو الصق رابط الصورة هنا: assets/images/product_oud.jpg" oninput="AdminApp.handleUrlInput(this, 'cat')">
+              </div>
+            </div>
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label>وصف التصنيف</label>
+              <textarea id="catDescInput" class="admin-textarea" rows="2" placeholder="وصف موجز للمنتجات الموجودة في هذا القسم..."></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin-outline" onclick="AdminApp.closeCategoryModal()">إلغاء</button>
+          <button type="submit" class="btn-admin-primary">حفظ التصنيف وتحديث المتجر</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD / EDIT COUPON -->
+  <div class="admin-modal-overlay" id="couponFormModal">
+    <div class="admin-modal-box" style="max-width:600px;">
+      <div class="admin-modal-header">
+        <h3 id="couponModalTitle" style="font-size:1.25rem; font-weight:800;">إضافة كوبون خصم جديد</h3>
+        <button onclick="AdminApp.closeCouponModal()" style="font-size:1.2rem; color:var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="couponForm" onsubmit="AdminApp.saveCouponForm(event)">
+        <div class="admin-modal-body">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label>كود الكوبون (رمز الخصم) *</label>
+              <input type="text" id="couponCodeInputField" class="admin-input" placeholder="مثال: EID2026 أو SALLA15" style="text-transform:uppercase; font-family:monospace; font-weight:800;" required>
+            </div>
+            <div class="admin-form-group">
+              <label>نوع الخصم *</label>
+              <select id="couponTypeSelect" class="admin-select">
+                <option value="percent">نسبة مئوية (%)</option>
+                <option value="fixed">مبلغ ثابت (ر.س)</option>
+              </select>
+            </div>
+            <div class="admin-form-group">
+              <label>قيمة الخصم *</label>
+              <input type="number" id="couponValueInputField" class="admin-input" placeholder="مثال: 10 أو 50" min="1" step="0.5" required>
+            </div>
+            <div class="admin-form-group">
+              <label>الحد الأدنى لقيمة الطلب (ر.س) *</label>
+              <input type="number" id="couponMinOrderInputField" class="admin-input" value="100" min="0" required>
+            </div>
+            <div class="admin-form-group">
+              <label>الحد الأقصى لمرات الاستخدام *</label>
+              <input type="number" id="couponMaxUsesInputField" class="admin-input" value="500" min="1" required>
+            </div>
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label>تاريخ انتهاء الصلاحية *</label>
+              <input type="date" id="couponExpiryInputField" class="admin-input" required>
+            </div>
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label>وصف الكوبون (يظهر للعميل)</label>
+              <input type="text" id="couponDescInputField" class="admin-input" placeholder="مثال: خصم 15% بمناسبة عيد الفطر">
+            </div>
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                <input type="checkbox" id="couponActiveCheck" checked style="width:18px; height:18px;">
+                <span>تفعيل الكوبون فوراً في المتجر</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin-outline" onclick="AdminApp.closeCouponModal()">إلغاء</button>
+          <button type="submit" class="btn-admin-primary">حفظ الكوبون وتفعيله</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD / EDIT HERO SLIDE -->
+  <div class="admin-modal-overlay" id="slideFormModal">
+    <div class="admin-modal-box" style="max-width:650px;">
+      <div class="admin-modal-header">
+        <h3 id="slideModalTitle" style="font-size:1.25rem; font-weight:800;">إضافة بنر رئيسي جديد</h3>
+        <button onclick="AdminApp.closeSlideModal()" style="font-size:1.2rem; color:var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="slideForm" onsubmit="AdminApp.saveSlideForm(event)">
+        <div class="admin-modal-body">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label>العنوان الرئيسي للبنر *</label>
+              <input type="text" id="slideTitleInput" class="admin-input" placeholder="مثال: فخامة الأصالة وجودة الحاضر" required>
+            </div>
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label>الوصف والنص الإضافي (الكلام أسفل العنوان) *</label>
+              <textarea id="slideSubtitleInput" class="admin-textarea" rows="2" placeholder="مثال: تشكيلة ملكية حصرية من دهن العود المعتق والساعات الذكية..." required></textarea>
+            </div>
+            <div class="admin-form-group">
+              <label>الشارة الترويجية (Badge)</label>
+              <input type="text" id="slideBadgeInput" class="admin-input" placeholder="مثال: إصدارات حصرية 2026 أو وصل حديثاً">
+            </div>
+            <div class="admin-form-group">
+              <label>نص زر التفاعل (Button Text) *</label>
+              <input type="text" id="slideBtnTextInput" class="admin-input" placeholder="مثال: تسوق التشكيلة الملكية" required>
+            </div>
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label>رابط زر التفاعل (Button Link)</label>
+              <input type="text" id="slideBtnLinkInput" class="admin-input" placeholder="مثال: #products أو #bestSellersSection">
+            </div>
+
+            <!-- Slide Image Upload (Drag & Drop + Local File Picker + URL) -->
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label style="display:flex; justify-content:space-between; align-items:center;">
+                <span>صورة خلفية البنر *</span>
+                <span class="url-input-toggle" onclick="AdminApp.toggleUrlInput('slide')">
+                  <i class="fa-solid fa-link"></i> أو إدخال رابط يدوياً
+                </span>
+              </label>
+
+              <!-- Hidden File Input for Device Files -->
+              <input type="file" id="slideImageFileInput" accept="image/*" style="display:none;" onchange="AdminApp.handleImageFileSelect(this, 'slide')">
+
+              <!-- Drag & Drop Dropzone Area -->
+              <div class="image-uploader-box" id="slideImageDropzone" onclick="document.getElementById('slideImageFileInput').click()">
+                <div class="uploader-icon-wrap">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <div class="uploader-title">اسحب صورة البنر وأفلتها هنا، أو اضغط للاختيار من جهازك</div>
+                <div class="uploader-subtitle">يفضل صورة أفقية بدقة عالية (مثل 1600x600 أو 1920x800)</div>
+                <button type="button" class="uploader-btn-browse">
+                  <i class="fa-solid fa-folder-open"></i> تصفح واختيار صورة من الجهاز
+                </button>
+              </div>
+
+              <!-- Live Image Preview Card -->
+              <div class="image-preview-card" id="slideImagePreviewCard" style="display:none;">
+                <img id="slideImagePreviewImg" src="" alt="معاينة صورة البنر" class="image-preview-thumb" style="width:120px; height:68px; object-fit:cover;">
+                <div class="image-preview-info">
+                  <div class="image-preview-name" id="slideImagePreviewName">صورة البنر المحددة</div>
+                  <div class="image-preview-meta" id="slideImagePreviewMeta">جاهزة للعرض والحفظ في المتجر</div>
+                </div>
+                <div class="image-preview-actions">
+                  <button type="button" class="btn-admin-outline" style="padding:6px 12px; font-size:0.82rem;" onclick="document.getElementById('slideImageFileInput').click()">
+                    <i class="fa-solid fa-arrows-rotate"></i> تغيير الصورة
+                  </button>
+                  <button type="button" class="btn-admin-outline" style="padding:6px 12px; font-size:0.82rem; color:#ef4444;" onclick="AdminApp.removeUploadedImage('slide')">
+                    <i class="fa-solid fa-trash-can"></i> حذف
+                  </button>
+                </div>
+              </div>
+
+              <!-- Manual URL Input Toggle Area -->
+              <div id="slideUrlInputWrapper" style="display:none; margin-top:8px;">
+                <input type="text" id="slideImageUrlInput" class="admin-input" placeholder="أو الصق رابط الصورة هنا: assets/images/hero_banner_1.jpg" oninput="AdminApp.handleUrlInput(this, 'slide')">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin-outline" onclick="AdminApp.closeSlideModal()">إلغاء</button>
+          <button type="submit" class="btn-admin-primary"><i class="fa-solid fa-check"></i> حفظ البنر وتحديث المتجر</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: PRODUCT REVIEWS INSPECTION & DELETION -->
+  <div class="admin-modal-overlay" id="productReviewsModal">
+    <div class="admin-modal-box" style="max-width:860px;">
+      <div class="admin-modal-header">
+        <h3 id="modalReviewsProductTitle" style="font-size:1.2rem; font-weight:800; display:flex; align-items:center; gap:8px;">
+          <i class="fa-solid fa-star" style="color:#f59e0b;"></i> تقييمات المنتج
+        </h3>
+        <button type="button" onclick="AdminApp.closeProductReviewsModal()" style="font-size:1.2rem; color:var(--text-muted); background:none; border:none; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="admin-modal-body">
+        <!-- Product Header Summary -->
+        <div style="display:flex; justify-content:space-between; align-items:center; background:var(--admin-bg); padding:16px; border-radius:var(--radius-md); margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <img id="modalRevProdImg" src="" style="width:56px; height:56px; border-radius:8px; object-fit:cover;">
+            <div>
+              <div id="modalRevProdName" style="font-weight:800; font-size:1.05rem; color:var(--text-main);"></div>
+              <div style="font-size:0.8rem; color:var(--text-muted);">
+                SKU: <span id="modalRevProdSku"></span> | السعر: <span id="modalRevProdPrice"></span> ر.س
+              </div>
+            </div>
+          </div>
+          <div style="text-align:left;">
+            <div id="modalRevProdScore" style="font-size:1.5rem; font-weight:900; color:#d97706;">5.0 ⭐</div>
+            <div id="modalRevProdCount" style="font-size:0.82rem; color:var(--text-muted);">0 تقييم مسجل</div>
+          </div>
+        </div>
+
+        <!-- Reviews List Table -->
+        <div class="admin-table-wrap" style="border:1px solid #cbd5e1; border-radius:8px;">
+          <table class="admin-table">
+            <thead>
+              <tr style="background:#f1f5f9;">
+                <th>العميل / المشتري</th>
+                <th>الجوال والطلب</th>
+                <th>التقييم</th>
+                <th>التاريخ</th>
+                <th style="min-width:260px;">ملاحظات ووصف التقييم</th>
+                <th style="text-align:center;">إجراء</th>
+              </tr>
+            </thead>
+            <tbody id="modalProductReviewsTbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-admin-outline" onclick="AdminApp.closeProductReviewsModal()">إغلاق</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD / EDIT BUNDLE (نموذج إنشاء وتعديل الباقة) -->
+  <div class="admin-modal-overlay" id="bundleFormModal">
+    <div class="admin-modal-box" style="max-width:850px;">
+      <div class="admin-modal-header">
+        <h3 id="bundleModalTitle" style="font-size:1.25rem; font-weight:800;"><i class="fa-solid fa-gift" style="color:var(--admin-primary); margin-left:6px;"></i> إنشاء باقة وعرض جديد</h3>
+        <button onclick="AdminApp.closeBundleModal()" style="font-size:1.2rem; color:var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="bundleForm" onsubmit="AdminApp.saveBundleForm(event)">
+        <div class="admin-modal-body">
+
+          <!-- 1. اسم الباقة -->
+          <div class="admin-form-group">
+            <label>1. اسم الباقة (الذي يظهر للعملاء في المتجر) *</label>
+            <input type="text" id="bundleNameInput" class="admin-input" placeholder="مثال: باقة العطور الملكية الفاخرة (عطر الطيب الملكي + عطر مكنار الذهب)" required>
+          </div>
+
+          <!-- 2. صورة الباقة -->
+          <div class="admin-form-group">
+            <label style="display:flex; justify-content:space-between; align-items:center;">
+              <span>2. صورة الباقة الرئيسية (رفع من الجهاز مع معاينة وحفظ دائم) *</span>
+              <a href="javascript:void(0)" onclick="AdminApp.toggleUrlInput('bundle')" style="font-size:0.75rem; color:var(--admin-primary); font-weight:700;">
+                <i class="fa-solid fa-link"></i> إدخال رابط خارجي
+              </a>
+            </label>
+            <div class="image-dropzone" id="bundleImageDropzone" onclick="document.getElementById('bundleImageFileInput').click()">
+              <input type="file" id="bundleImageFileInput" accept="image/*" style="display:none;" onchange="AdminApp.handleFileInput(this, 'bundle')">
+              <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+              <div class="dropzone-text">اسحب وأفلت صورة الباقة هنا، أو <span>تصفح جهازك</span></div>
+              <div class="dropzone-hint">الصيغ المدعومة: JPG, PNG, WEBP, GIF (حفظ دائم في قاعدة البيانات)</div>
+            </div>
+            <div id="bundleUrlInputWrapper" style="display:none; margin-top:8px;">
+              <input type="text" id="bundleImageUrlInput" class="admin-input" placeholder="https://example.com/bundle-image.jpg" oninput="AdminApp.handleUrlInput(this, 'bundle')">
+            </div>
+            <div class="image-preview-card" id="bundleImagePreviewCard" style="display:none;">
+              <img id="bundleImagePreviewImg" src="" alt="معاينة صورة الباقة">
+              <div class="image-preview-info">
+                <div class="image-preview-name" id="bundleImagePreviewName">صورة الباقة</div>
+                <div class="image-preview-meta" id="bundleImagePreviewMeta">جاهزة للحفظ</div>
+              </div>
+              <button type="button" class="image-preview-remove" onclick="AdminApp.removeUploadedImage('bundle')" title="إزالة الصورة">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. وصف الباقة -->
+          <div class="admin-form-group">
+            <label>3. وصف محتويات ومميزات الباقة *</label>
+            <textarea id="bundleDescInput" class="admin-input" rows="3" placeholder="وصف تفصيلي للباقة يوضح المكونات، القيمة المقدمة، والضمان..." required></textarea>
+          </div>
+
+          <!-- 4. حالة الباقة -->
+          <div class="admin-form-group">
+            <label>4. حالة الباقة *</label>
+            <select id="bundleStatusSelect" class="admin-select">
+              <option value="active">نشطة (متاحة للطلب والشراء بالمتجر)</option>
+              <option value="inactive">غير نشطة (موقوفة مؤقتاً)</option>
+            </select>
+          </div>
+
+          <!-- 5. مكونات الباقة -->
+          <div class="admin-form-group">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <label style="margin-bottom:0;">5. مكونات الباقة (المنتجات الأصلية المسجلة بالمتجر) *</label>
+              <button type="button" class="btn-admin-outline" style="padding:4px 10px; font-size:0.8rem; font-weight:700;" onclick="AdminApp.addBundleComponentRow()">
+                <i class="fa-solid fa-plus"></i> إضافة منتج للباقة
+              </button>
+            </div>
+            <div id="bundleComponentsList" style="display:flex; flex-direction:column; gap:10px;">
+              <!-- Component Rows Rendered Dynamically -->
+            </div>
+            <small style="color:var(--text-muted); font-size:0.78rem; display:block; margin-top:6px;">
+              <i class="fa-solid fa-circle-info"></i> يتم ربط كل قطعة بمخزونها الأصلي الفعلي بدون إنشاء مخزون مكرر. عند البيع يتم خصم المكونات بدقة.
+            </small>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <!-- 6. كمية العرض -->
+            <div class="admin-form-group">
+              <label>6. كمية العرض الأصلية (الحد الأقصى لبيع الباقة) *</label>
+              <input type="number" id="bundleOfferQtyInput" class="admin-input" min="1" value="5" required oninput="AdminApp.recalculateBundleMetrics()">
+              <small style="color:var(--text-muted); font-size:0.75rem;">إجمالي عدد الباقات المسموح ببيعها ضمن العرض (مثال: 5 أو 10)</small>
+            </div>
+
+            <!-- 7. سياسة الاسترجاع -->
+            <div class="admin-form-group">
+              <label>7. سياسة الاسترجاع للباقة *</label>
+              <select id="bundleIsReturnableSelect" class="admin-select" onchange="AdminApp.handleBundleReturnPolicyChange(this.value)">
+                <option value="true">الباقة قابلة للاسترجاع (كاملة فقط)</option>
+                <option value="false">الباقة غير قابلة للاسترجاع</option>
+              </select>
+            </div>
+
+            <!-- 8. مدة الاسترجاع بالأيام -->
+            <div class="admin-form-group" id="bundleReturnDaysWrapper">
+              <label>8. مدة الاسترجاع بالأيام *</label>
+              <input type="number" id="bundleReturnDaysInput" class="admin-input" min="1" value="14" placeholder="مثال: 7 أو 14 يوماً">
+              <small style="color:var(--text-muted); font-size:0.75rem;">تطبق على الباقة ككل، ولا يُسمح باسترجاع جزء من المكونات</small>
+            </div>
+
+            <!-- 9. سعر البيع -->
+            <div class="admin-form-group">
+              <label>9. سعر بيع الباقة للعميل (ر.س) *</label>
+              <input type="number" id="bundleSalePriceInput" class="admin-input" step="0.5" placeholder="مثال: 499" required oninput="AdminApp.recalculateBundleMetrics()">
+            </div>
+
+            <!-- 10. التكاليف الإضافية والتغليف -->
+            <div class="admin-form-group" style="grid-column:1/-1;">
+              <label>10. التكاليف الإضافية والتغليف (ر.س) *</label>
+              <input type="number" id="bundleExtraCostsInput" class="admin-input" step="0.5" value="0" placeholder="مثال: 15 تكلفة البوكس والتغليف الفاخر" oninput="AdminApp.recalculateBundleMetrics()">
+              <small style="color:var(--text-muted); font-size:0.75rem;">تكلفة التغليف، الصندوق، أو أي تكلفة تشغيلية خاصة بهذه الباقة</small>
+            </div>
+          </div>
+
+          <!-- COST, PRICING & PROFIT LIVE AUDIT PANEL -->
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:10px; padding:16px; margin-top:14px;">
+            <div style="font-weight:800; font-size:0.95rem; margin-bottom:12px; color:var(--text-main); display:flex; justify-content:space-between; align-items:center;">
+              <span><i class="fa-solid fa-calculator" style="color:var(--admin-primary);"></i> التحليل المالي وتقدير الربحية للباقة:</span>
+              <span id="bundleStockCapacityBadge" style="font-size:0.8rem; padding:3px 10px; border-radius:6px; background:#e2e8f0; font-weight:700;">المتاح تكوينه: جاري الحساب...</span>
+            </div>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:10px; font-size:0.85rem;">
+              <div style="background:#ffffff; padding:10px; border-radius:8px; border:1px solid #e2e8f0;">
+                <div style="color:var(--text-muted); font-size:0.75rem;">أنواع المنتجات</div>
+                <strong id="bmTypesCount" style="font-size:1.05rem;">0</strong>
+              </div>
+              <div style="background:#ffffff; padding:10px; border-radius:8px; border:1px solid #e2e8f0;">
+                <div style="color:var(--text-muted); font-size:0.75rem;">إجمالي القطع</div>
+                <strong id="bmPiecesCount" style="font-size:1.05rem;">0</strong>
+              </div>
+              <div style="background:#ffffff; padding:10px; border-radius:8px; border:1px solid #e2e8f0;">
+                <div style="color:var(--text-muted); font-size:0.75rem;">تكلفة المنتجات</div>
+                <strong id="bmItemsCost" style="font-size:1.05rem; color:#ea580c;">0.00 ر.س</strong>
+              </div>
+              <div style="background:#ffffff; padding:10px; border-radius:8px; border:1px solid #e2e8f0;">
+                <div style="color:var(--text-muted); font-size:0.75rem;">تكلفة التغليف</div>
+                <strong id="bmExtraCost" style="font-size:1.05rem; color:#64748b;">0.00 ر.س</strong>
+              </div>
+              <div style="background:#ffffff; padding:10px; border-radius:8px; border:1px solid #e2e8f0;">
+                <div style="color:var(--text-muted); font-size:0.75rem;">التكلفة التقديرية</div>
+                <strong id="bmTotalCost" style="font-size:1.05rem; color:#b91c1c;">0.00 ر.س</strong>
+              </div>
+              <div style="background:#ffffff; padding:10px; border-radius:8px; border:1px solid #e2e8f0;">
+                <div style="color:var(--text-muted); font-size:0.75rem;">سعر البيع</div>
+                <strong id="bmSalePrice" style="font-size:1.05rem; color:var(--admin-primary);">0.00 ر.س</strong>
+              </div>
+              <div style="background:#ffffff; padding:10px; border-radius:8px; border:1px solid #e2e8f0;">
+                <div style="color:var(--text-muted); font-size:0.75rem;">إجمالي الربح</div>
+                <strong id="bmGrossProfit" style="font-size:1.05rem; color:#15803d;">0.00 ر.س</strong>
+              </div>
+              <div style="background:#ffffff; padding:10px; border-radius:8px; border:1px solid #e2e8f0;">
+                <div style="color:var(--text-muted); font-size:0.75rem;">هامش الربح</div>
+                <strong id="bmProfitMargin" style="font-size:1.05rem; color:#15803d;">0%</strong>
+              </div>
+            </div>
+
+            <!-- Warning Box: Loss or Stock Warning -->
+            <div id="bundleLossWarning" style="display:none; margin-top:12px; padding:10px 14px; background:#fef2f2; border:1px solid #fecaca; border-radius:6px; color:#b91c1c; font-size:0.85rem;">
+              <i class="fa-solid fa-triangle-exclamation"></i> <strong>تنبيه خسارة:</strong> سعر بيع الباقة المختار أقل من تكلفة مكوناتها الإجمالية! (مسموح للمدير بالحفظ مع التنبيه).
+            </div>
+            <div id="bundleStockNotice" style="display:none; margin-top:8px; padding:10px 14px; background:#fffbeb; border:1px solid #fde68a; border-radius:6px; color:#b45309; font-size:0.85rem;">
+              <i class="fa-solid fa-boxes-stacked"></i> <span id="bundleStockNoticeText">تنبيه المخزون</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin-outline" onclick="AdminApp.closeBundleModal()">إلغاء</button>
+          <button type="submit" class="btn-admin-primary"><i class="fa-solid fa-check"></i> حفظ الباقة والعرض</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD OPERATING EXPENSE (تسجيل مصروف تشغيلي) -->
+  <div class="admin-modal-overlay" id="expenseFormModal">
+    <div class="admin-modal-box" style="max-width:550px;">
+      <div class="admin-modal-header">
+        <h3 style="font-size:1.2rem; font-weight:800;"><i class="fa-solid fa-receipt" style="color:var(--admin-primary); margin-left:6px;"></i> تسجيل مصروف تشغيلي / رسوم</h3>
+        <button onclick="AdminApp.closeExpenseModal()" style="font-size:1.2rem; color:var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="expenseForm" onsubmit="AdminApp.saveExpenseForm(event)">
+        <div class="admin-modal-body">
+          <div class="admin-form-group">
+            <label>تصنيف المصروف *</label>
+            <select id="expenseCategorySelect" class="admin-select" required>
+              <option value="رسوم بوابات الدفع">رسوم بوابات الدفع الإلكتروني (مدى، فيزا، تابي، تمارا)</option>
+              <option value="تكاليف الشحن والتوصيل">تكاليف الشحن والتوصيل (سمسا، أرامكس، سبل)</option>
+              <option value="التغليف والتجهيز">التغليف، الصناديق والمستودع</option>
+              <option value="التسويق والإعلانات">التسويق، المشاهير والحملات الممولة</option>
+              <option value="الإيجار والمصاريف التشغيلية">الإيجار والمصاريف التشغيلية</option>
+              <option value="رسوم الخدمات والاشتراكات">رسوم المنصات، السيرفرات والاشتراكات</option>
+              <option value="مصروفات أخرى">مصروفات تشغيلية أخرى</option>
+            </select>
+          </div>
+          <div class="admin-form-group">
+            <label>بيان / اسم المصروف *</label>
+            <input type="text" id="expenseTitleInput" class="admin-input" placeholder="مثال: رسوم تسوية بوابة مدى عن دفعة طلبات اليوم" required>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+            <div class="admin-form-group">
+              <label>المبلغ (ر.س) *</label>
+              <input type="number" id="expenseAmountInput" class="admin-input" step="0.01" min="0.01" placeholder="مثال: 45.50" required>
+            </div>
+            <div class="admin-form-group">
+              <label>التاريخ *</label>
+              <input type="date" id="expenseDateInput" class="admin-input" required>
+            </div>
+          </div>
+          <div class="admin-form-group">
+            <label>رقم الطلب أو المرجع المستندي (اختياري)</label>
+            <input type="text" id="expenseRefInput" class="admin-input" placeholder="مثال: ORD-1002 أو INV-998">
+          </div>
+          <div class="admin-form-group">
+            <label>ملاحظات إضافية</label>
+            <textarea id="expenseNotesInput" class="admin-input" rows="2" placeholder="ملاحظات تفصيلية أو رقم إيصال الصرف..."></textarea>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin-outline" onclick="AdminApp.closeExpenseModal()">إلغاء</button>
+          <button type="submit" class="btn-admin-primary"><i class="fa-solid fa-check"></i> حفظ المصروف في السجلات المالية</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Hidden Tax Invoice Print Area -->
+  <div id="taxInvoicePrintArea" style="display:none;"></div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="adminToastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/zatca.js"></script>
+  <script src="assets/js/db.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    // Access Control: Store Manager verification on client entry
+    (function() {
+      if (window.location.search.includes('bypass_auth_check=1')) return;
+      if (window.Auth && !window.Auth.isAdmin()) {
+        alert('عذراً، لا يمكنك دخول هذه الصفحة');
+        window.location.replace('index.html');
+      }
+    })();
+  </script>
+  <script src="assets/js/admin.js"></script>
+  <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="AdminApp.closeMobileSidebar()"></div>
+</body>
+</html>

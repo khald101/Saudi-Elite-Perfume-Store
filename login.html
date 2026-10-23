@@ -1,0 +1,654 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول وإنشاء حساب | متجر النخبة السعودي</title>
+  <meta name="description" content="بوابة الدخول وإنشاء الحساب في متجر النخبة السعودي. انضم إلينا للاستمتاع بتجربة تسوق راقية وشحن فوري لكافة مناطق المملكة.">
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/store.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 10%, #134e4a 0%, #0f172a 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #334155;
+      font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .auth-page-topbar {
+      padding: 18px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .auth-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .auth-brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    }
+
+    .auth-brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0;
+      color: #f8fafc;
+    }
+
+    .auth-brand-text p {
+      font-size: 0.76rem;
+      color: #94a3b8;
+      margin: 2px 0 0;
+    }
+
+    .auth-back-btn {
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      padding: 9px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .auth-back-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .auth-page-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.55);
+      overflow: hidden;
+      animation: fadeInUp 0.4s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .auth-card-header {
+      background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);
+      color: #fff;
+      padding: 30px 28px 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .auth-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+
+    .auth-card-header h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .auth-card-header p {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin: 6px 0 18px;
+    }
+
+    .auth-tabs-nav {
+      display: flex;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 5px;
+      border-radius: 12px;
+    }
+
+    .auth-tab-btn {
+      flex: 1;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      background: transparent;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: inherit;
+    }
+
+    .auth-tab-btn.active {
+      background: #0d5c46;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(13, 92, 70, 0.45);
+    }
+
+    .auth-card-body {
+      padding: 28px;
+    }
+
+    .auth-input-group {
+      margin-bottom: 18px;
+    }
+
+    .auth-input-group label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+
+    .auth-input-wrapper {
+      position: relative;
+    }
+
+    .auth-input-wrapper i {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .auth-input-wrapper input {
+      width: 100%;
+      padding: 12px 42px 12px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-family: inherit;
+      color: #1e293b;
+      box-sizing: border-box;
+      transition: all 0.2s;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .auth-input-wrapper input[type="email"] {
+      direction: ltr;
+      text-align: right;
+    }
+
+    .auth-input-wrapper input:focus {
+      outline: none;
+      border-color: #0d5c46;
+      box-shadow: 0 0 0 3px rgba(13, 92, 70, 0.12);
+    }
+
+    .auth-submit-btn {
+      width: 100%;
+      padding: 13px;
+      background: #0d5c46;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      font-family: inherit;
+      box-shadow: 0 6px 18px rgba(13, 92, 70, 0.3);
+    }
+
+    .auth-submit-btn:hover {
+      background: #094333;
+      transform: translateY(-1px);
+    }
+
+    .auth-alert-box {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .auth-notice-box {
+      display: none;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e40af;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .auth-footer-text {
+      text-align: center;
+      color: #64748b;
+      font-size: 0.88rem;
+      margin-top: 22px;
+    }
+
+    .auth-footer-text a {
+      color: #0d5c46;
+      font-weight: 800;
+      text-decoration: underline;
+      margin-right: 4px;
+    }
+
+    .auth-page-footer {
+      text-align: center;
+      padding: 18px;
+      color: #94a3b8;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 480px) {
+      .auth-page-topbar {
+        padding: 12px 16px !important;
+      }
+      .auth-brand-text h1 {
+        font-size: 1rem !important;
+      }
+      .auth-brand-text p {
+        display: none;
+      }
+      .auth-back-btn {
+        padding: 6px 14px !important;
+        font-size: 0.8rem !important;
+      }
+      .auth-card {
+        border-radius: 18px !important;
+        margin: 0 !important;
+      }
+      .auth-card-header {
+        padding: 20px 16px 16px !important;
+      }
+      .auth-card-header h2 {
+        font-size: 1.2rem !important;
+      }
+      .auth-card-body {
+        padding: 20px 16px !important;
+      }
+      .auth-submit-btn {
+        padding: 12px !important;
+        font-size: 0.95rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="auth-page-topbar">
+    <a href="index.html" class="auth-brand">
+      <img src="assets/images/logo.jpg" alt="شعار متجر النخبة">
+      <div class="auth-brand-text">
+        <h1>متجر النخبة السعودي</h1>
+        <p>الأصالة والفخامة في مكان واحد</p>
+      </div>
+    </a>
+
+    <a href="index.html" class="auth-back-btn">
+      <i class="fa-solid fa-arrow-left"></i> العودة للمتجر
+    </a>
+  </div>
+
+  <!-- Main Container -->
+  <div class="auth-page-wrapper">
+    <div class="auth-card">
+      
+      <!-- Card Header -->
+      <div class="auth-card-header">
+        <div class="auth-badge">
+          <i class="fa-solid fa-shield-halved"></i> تسجيل دخول مشفر وآمن
+        </div>
+        <h2 id="pageAuthTitle">تسجيل الدخول إلى حسابك</h2>
+        <p id="pageAuthSub">مرحباً بك مجدداً في بوابة عملاء متجر النخبة</p>
+
+        <!-- Tabs Navigation -->
+        <div class="auth-tabs-nav">
+          <button type="button" class="auth-tab-btn active" id="tabBtnLogin" onclick="switchTab('login')">
+            <i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول
+          </button>
+          <button type="button" class="auth-tab-btn" id="tabBtnRegister" onclick="switchTab('register')">
+            <i class="fa-solid fa-user-plus"></i> إنشاء حساب جديد
+          </button>
+        </div>
+      </div>
+
+      <!-- Card Body -->
+      <div class="auth-card-body">
+        
+        <!-- Notice Box (e.g. from prompt redirect) -->
+        <div id="pageNoticeBox" class="auth-notice-box"></div>
+
+        <!-- Alert Error/Success Box -->
+        <div id="pageAlertBox" class="auth-alert-box"></div>
+
+        <!-- FORM 1: LOGIN -->
+        <form id="formLogin" onsubmit="event.preventDefault(); handleLogin();" style="display: block;">
+          <div class="auth-input-group">
+            <label>البريد الإلكتروني <span style="color:#ef4444;">*</span></label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-envelope"></i>
+              <input type="email" id="loginEmail" required placeholder="name@example.com" autocomplete="email">
+            </div>
+          </div>
+
+          <div class="auth-input-group">
+            <label>كلمة المرور <span style="color:#ef4444;">*</span></label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="loginPassword" required placeholder="أدخل كلمة المرور الخاصة بك" autocomplete="current-password">
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; font-size: 0.84rem;">
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #475569;">
+              <input type="checkbox" id="loginRemember" checked> تذكرني دائماً
+            </label>
+            <span style="color: #64748b; font-size: 0.8rem;">
+              <i class="fa-solid fa-lock" style="font-size:0.75rem;"></i> بياناتك محمية 100%
+            </span>
+          </div>
+
+          <button type="submit" id="btnLoginSubmit" class="auth-submit-btn">
+            <i class="fa-solid fa-right-to-bracket"></i> دخول إلى الحساب
+          </button>
+
+          <div class="auth-footer-text">
+            ليس لديك حساب بعد؟
+            <a href="#" onclick="event.preventDefault(); switchTab('register');">إنشاء حساب جديد</a>
+          </div>
+        </form>
+
+        <!-- FORM 2: REGISTER -->
+        <form id="formRegister" onsubmit="event.preventDefault(); handleRegister();" style="display: none;">
+          <div class="auth-input-group">
+            <label>الاسم الكامل <span style="color:#ef4444;">*</span></label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" id="regName" required placeholder="مثال: محمد بن خالد العتيبي">
+            </div>
+          </div>
+
+          <div class="auth-input-group">
+            <label>البريد الإلكتروني <span style="color:#ef4444;">*</span></label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-envelope"></i>
+              <input type="email" id="regEmail" required placeholder="name@example.com" autocomplete="email">
+            </div>
+          </div>
+
+          <div class="auth-input-group">
+            <label>رقم الجوال السعودي (اختياري)</label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-phone"></i>
+              <input type="tel" id="regPhone" placeholder="05XXXXXXXX">
+            </div>
+          </div>
+
+          <div class="auth-input-group">
+            <label>كلمة المرور (6 خانات على الأقل) <span style="color:#ef4444;">*</span></label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="regPassword" required minlength="6" placeholder="اختر كلمة مرور قوية" autocomplete="new-password">
+            </div>
+          </div>
+
+          <button type="submit" id="btnRegSubmit" class="auth-submit-btn">
+            <i class="fa-solid fa-user-plus"></i> إتمام إنشاء الحساب
+          </button>
+
+          <div class="auth-footer-text">
+            لديك حساب بالفعل؟
+            <a href="#" onclick="event.preventDefault(); switchTab('login');">تسجيل الدخول</a>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Footer -->
+  <div class="auth-page-footer">
+    جميع الحقوق محفوظة © 2026 لمتجر النخبة السعودي | موثق ومعتمد
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/zatca.js"></script>
+  <script src="assets/js/db.js"></script>
+  <script src="assets/js/auth.js"></script>
+
+  <script>
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    function switchTab(tab) {
+      const formLogin = document.getElementById('formLogin');
+      const formRegister = document.getElementById('formRegister');
+      const tabBtnLogin = document.getElementById('tabBtnLogin');
+      const tabBtnRegister = document.getElementById('tabBtnRegister');
+      const pageTitle = document.getElementById('pageAuthTitle');
+      const pageSub = document.getElementById('pageAuthSub');
+      hideAlert();
+
+      if (tab === 'register') {
+        formLogin.style.display = 'none';
+        formRegister.style.display = 'block';
+        tabBtnLogin.classList.remove('active');
+        tabBtnRegister.classList.add('active');
+        pageTitle.textContent = 'إنشاء حساب جديد في متجر النخبة';
+        pageSub.textContent = 'انضم إلى نخبة المتسوقين واستمتع بعروض وخدمات خاصة';
+      } else {
+        formLogin.style.display = 'block';
+        formRegister.style.display = 'none';
+        tabBtnLogin.classList.add('active');
+        tabBtnRegister.classList.remove('active');
+        pageTitle.textContent = 'تسجيل الدخول إلى حسابك';
+        pageSub.textContent = 'مرحباً بك مجدداً في بوابة عملاء متجر النخبة';
+      }
+    }
+
+    function showAlert(msg, type = 'error') {
+      const box = document.getElementById('pageAlertBox');
+      if (!box) return;
+      box.style.display = 'block';
+      box.style.background = type === 'success' ? '#f0fdf4' : type === 'info' ? '#eff6ff' : '#fef2f2';
+      box.style.border = `1px solid ${type === 'success' ? '#bbf7d0' : type === 'info' ? '#bfdbfe' : '#fecaca'}`;
+      box.style.color = type === 'success' ? '#166534' : type === 'info' ? '#1e40af' : '#991b1b';
+      box.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i> ${msg}`;
+    }
+
+    function hideAlert() {
+      const box = document.getElementById('pageAlertBox');
+      if (box) box.style.display = 'none';
+    }
+
+    async function handleLogin() {
+      hideAlert();
+      const email = document.getElementById('loginEmail').value.trim();
+      const pass = document.getElementById('loginPassword').value;
+      const remember = document.getElementById('loginRemember').checked;
+      const btn = document.getElementById('btnLoginSubmit');
+
+      if (!email || !pass) {
+        showAlert('يرجى إدخال البريد الإلكتروني وكلمة المرور.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري التحقق...';
+
+      try {
+        const res = await window.Auth.login(email, pass, remember);
+        if (res.success) {
+          showAlert(`مرحباً بك، ${res.user.name}! تم تسجيل الدخول بنجاح.`, 'success');
+          setTimeout(() => {
+            const redirectUrl = getQueryParam('redirect');
+            if (redirectUrl) {
+              window.location.href = redirectUrl;
+            } else if (res.isAdmin) {
+              window.location.href = 'admin.html';
+            } else {
+              window.location.href = 'index.html';
+            }
+          }, 600);
+        } else {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> دخول إلى الحساب';
+          if (res.notFound) {
+            showAlert(`${res.message} <a href="#" onclick="event.preventDefault(); switchTab('register');" style="text-decoration:underline; font-weight:800; color:inherit; margin-right:4px;">اضغط هنا لإنشاء حساب الآن</a>`, 'error');
+          } else {
+            showAlert(res.message, 'error');
+          }
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> دخول إلى الحساب';
+        showAlert('حدث خطأ غير متوقع: ' + err.message, 'error');
+      }
+    }
+
+    async function handleRegister() {
+      hideAlert();
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const phone = document.getElementById('regPhone').value.trim();
+      const pass = document.getElementById('regPassword').value;
+      const btn = document.getElementById('btnRegSubmit');
+
+      if (!name || !email || !pass) {
+        showAlert('يرجى ملء جميع الحقول الإلزامية.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري إنشاء الحساب...';
+
+      try {
+        const res = await window.Auth.register({ name, email, phone, password: pass });
+        if (res.success) {
+          showAlert(`تهانينا ${res.user.name}! تم إنشاء حسابك بنجاح.`, 'success');
+          setTimeout(() => {
+            const redirectUrl = getQueryParam('redirect');
+            if (redirectUrl) {
+              window.location.href = redirectUrl;
+            } else {
+              window.location.href = 'index.html';
+            }
+          }, 600);
+        } else {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> إتمام إنشاء الحساب';
+          if (res.error === 'email_exists') {
+            showAlert(`${res.message} <a href="#" onclick="event.preventDefault(); switchTab('login');" style="text-decoration:underline; font-weight:800; color:inherit; margin-right:4px;">اضغط هنا لتسجيل الدخول</a>`, 'error');
+          } else {
+            showAlert(res.message, 'error');
+          }
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> إتمام إنشاء الحساب';
+        showAlert('حدث خطأ: ' + err.message, 'error');
+      }
+    }
+
+    // Auto initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check query param or hash for tab
+      const tabParam = getQueryParam('tab') || (window.location.hash.includes('register') ? 'register' : 'login');
+      if (tabParam === 'register') {
+        switchTab('register');
+      }
+
+      // Check notice msg in query param
+      const noticeMsg = getQueryParam('msg');
+      if (noticeMsg) {
+        const box = document.getElementById('pageNoticeBox');
+        if (box) {
+          box.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${decodeURIComponent(noticeMsg)}`;
+          box.style.display = 'block';
+        }
+      }
+
+      // If user is already logged in, show banner or allow redirect
+      if (window.Auth && window.Auth.isLoggedIn()) {
+        const user = window.Auth.getCurrentUser();
+        showAlert(`أنت مسجل دخولك حالياً باسم (${user.name}). <a href="index.html" style="text-decoration:underline; font-weight:800; margin-right:4px;">العودة للمتجر</a> أو <a href="#" onclick="event.preventDefault(); window.Auth.logout(); window.location.reload();" style="text-decoration:underline; color:#ef4444; font-weight:800; margin-right:8px;">تسجيل الخروج</a>`, 'info');
+      }
+    });
+  </script>
+</body>
+</html>

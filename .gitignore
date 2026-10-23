@@ -1,0 +1,4 @@
+﻿*.txt
+dump_out.html
+test_run_report.json
+*.backup.js

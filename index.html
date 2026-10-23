@@ -1,0 +1,1499 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر النخبة للعطور الملكية | أفخر عطور النيش ودهن العود والبخور</title>
+  <meta name="description" content="متجر النخبة للعطور الملكية الفاخرة، أنقى أدهان العود المعتقة، عطور النيش، المسك والعنبر، والبخور الملكي مع توصيل سريع لجميع مناطق المملكة وضمان ذهبي.">
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/store.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar" id="announcementBar">
+    <span id="announcementText">✨ عروض موسم الرياض: شحن مجاني لكافة الطلبات فوق 350 ر.س وكود خصم 10% (كود: SALLA10) 🚚</span>
+    <button class="announcement-close" onclick="document.getElementById('announcementBar').style.display='none'" aria-label="إغلاق الشريط الإعلاني">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </aside>
+
+  <!-- Sticky Main Header -->
+  <header class="main-header">
+    <div class="container header-inner">
+      <!-- Store Brand & Logo -->
+      <a href="#home" class="store-brand" onclick="StoreApp.navigateTo('home')">
+        <img src="assets/images/logo.jpg" alt="شعار متجر النخبة" class="store-logo">
+        <div class="store-brand-text">
+          <h1 class="store-name-text">متجر النخبة السعودي</h1>
+          <p class="store-slogan-text">الأصالة والفخامة في مكان واحد</p>
+        </div>
+      </a>
+
+      <!-- Live Search Bar -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="globalSearchInput" placeholder="ابحث عن عطر ملكي، دهن عود معتق، بخور، مسك..." autocomplete="off">
+        </div>
+        <!-- Live Autocomplete Dropdown -->
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+
+      <!-- Action Buttons -->
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- Switch to Admin Dashboard -->
+        <a href="admin.html" id="navAdminDashboardBtn" class="admin-portal-link" title="الدخول إلى لوحة تحكم التاجر سلة" style="display: none;">
+          <i class="fa-solid fa-gauge-high"></i>
+          <span>لوحة التحكم</span>
+        </a>
+
+        <!-- Auth Action Container (Login button or user profile avatar) -->
+        <div id="navAuthActionBtn" style="display:inline-flex; align-items:center;"></div>
+
+        <!-- Account / Orders -->
+        <button class="action-btn" onclick="StoreApp.showAccount()" title="حسابي وطلباتي">
+          <i class="fa-regular fa-user"></i>
+        </button>
+
+        <!-- Wishlist -->
+        <button class="action-btn" onclick="StoreApp.showAccount()" title="المفضلة">
+          <i class="fa-regular fa-heart"></i>
+          <span class="action-badge wishlist-count-badge" style="display:none;">0</span>
+        </button>
+
+        <!-- Cart Drawer Trigger -->
+        <button class="action-btn" onclick="StoreApp.openCartDrawer()" title="سلة التسوق">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="action-badge cart-count-badge" style="display:none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Bar (Categories) -->
+  <nav class="sub-nav">
+    <div class="container">
+      <div class="categories-bar" id="categoriesNavList">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Views Container -->
+  <main>
+
+    <!-- VIEW 1: HOME PAGE -->
+    <div id="view-home" class="view-container active">
+      
+      <!-- Hero Carousel -->
+      <section class="hero-section">
+        <div class="container">
+          <div class="hero-slider" id="heroSliderContainer">
+            <!-- Dynamic Slides rendered by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust Perks Bar -->
+      <section class="container">
+        <div class="trust-bar">
+          <div class="trust-card">
+            <div class="trust-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <div class="trust-info">
+              <h4>شحن سريع ومجاني</h4>
+              <p>توصيل لباب البيت لكافة مناطق المملكة</p>
+            </div>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="trust-info">
+              <h4>منتجات أصلية 100%</h4>
+              <p>ضمان ذهبي واسترجاع خلال 14 يوماً</p>
+            </div>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon"><i class="fa-solid fa-credit-card"></i></div>
+            <div class="trust-info">
+              <h4>دفع آمن ومشفر</h4>
+              <p>مدى، Apple Pay، وتمارا بالتقسيط</p>
+            </div>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon"><i class="fa-solid fa-qrcode"></i></div>
+            <div class="trust-info">
+              <h4>فاتورة ضريبية معتمدة</h4>
+              <p>متوافقة مع هيئة الزكاة والضريبة ZATCA</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categories Showcase -->
+      <section class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">تسوق حسب التصنيف</h2>
+            <p class="section-subtitle">اكتشف تشكيلاتنا الاستثنائية المختارة بعناية</p>
+          </div>
+        </div>
+        <div class="categories-grid" id="categoriesGrid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- Flash Deals with Live Countdown -->
+      <section class="container" id="flashDealsSection">
+        <div class="flash-deals-box">
+          <div class="flash-deals-header">
+            <div>
+              <span class="hero-badge" id="flashDealsBadge" style="background:#ef4444; color:#fff; border:none;">
+                <i class="fa-solid fa-bolt"></i> عروض الصاعقة الحصرية
+              </span>
+              <h2 id="flashDealsTitle" style="font-size:1.8rem; font-weight:900; margin-top:8px;">تخفيضات كبرى تنتهي قريباً</h2>
+            </div>
+            <!-- Live Countdown Timer -->
+            <div class="countdown-timer" id="flashDealsTimer">
+              <div class="timer-box">
+                <span id="dealHours">12</span>
+                <span class="timer-label">ساعة</span>
+              </div>
+              <span style="font-weight:900; font-size:1.4rem;">:</span>
+              <div class="timer-box">
+                <span id="dealMinutes">45</span>
+                <span class="timer-label">دقيقة</span>
+              </div>
+              <span style="font-weight:900; font-size:1.4rem;">:</span>
+              <div class="timer-box">
+                <span id="dealSeconds">20</span>
+                <span class="timer-label">ثانية</span>
+              </div>
+            </div>
+          </div>
+          <div class="products-grid" id="flashDealsGrid" style="margin-bottom:0;">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Best Sellers Section -->
+      <section class="container" id="bestSellersSection">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">الأكثر طلباً ومبيعاً</h2>
+            <p class="section-subtitle">المنتجات الأكثر تفضيلاً وتقييماً من قبل عملائنا</p>
+          </div>
+          <a href="#category/all" class="section-link" onclick="StoreApp.showCategory('all')">
+            عرض الكل <i class="fa-solid fa-arrow-left"></i>
+          </a>
+        </div>
+        <div class="products-grid" id="bestSellersGrid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- New Arrivals Section -->
+      <section class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">وصل حديثاً</h2>
+            <p class="section-subtitle">أحدث ما تم إضافته لمتجرنا هذا الأسبوع</p>
+          </div>
+        </div>
+        <div class="products-grid" id="newArrivalsGrid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- Customer Testimonials -->
+      <section class="container" style="margin-bottom:56px;">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">آراء وتجارب العملاء الموثقة</h2>
+            <p class="section-subtitle">ثقة عملائنا هي سر فخرنا وتميزنا الدائم</p>
+          </div>
+        </div>
+        <div class="trust-bar" id="testimonialsGrid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- Newsletter Subscription -->
+      <section class="container" style="margin-bottom:40px;">
+        <div style="background:linear-gradient(135deg, var(--primary) 0%, #063c2e 100%); border-radius:var(--radius-xl); padding:40px; color:#fff; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px;">
+          <div>
+            <h3 style="font-size:1.6rem; font-weight:800; margin-bottom:6px;">انضم إلى نادي النخبة الحصري</h3>
+            <p style="color:#d1fae5; font-size:0.95rem;">احصل على كود خصم 10% فور اشتراكك وكن أول من يعلم بالعروض الملكية</p>
+          </div>
+          <div style="display:flex; gap:10px; flex:1; max-width:440px;">
+            <input type="email" placeholder="أدخل بريدك الإلكتروني" style="flex:1; padding:14px 18px; border-radius:var(--radius-md); border:none; outline:none; font-size:0.95rem;">
+            <button class="btn-primary" style="background:var(--secondary); color:#fff; white-space:nowrap; padding:14px 24px;" onclick="StoreApp.showToast('شكراً لاشتراكك في نادي النخبة! 💌', 'success')">اشتراك</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- VIEW 2: CATEGORY CATALOG PAGE -->
+    <div id="view-category" class="view-container">
+      <div class="container" style="padding-top:24px;">
+        <div style="background:#fff; border-radius:var(--radius-lg); padding:32px; border:1px solid var(--border-color); margin-bottom:32px;">
+          <h2 id="categoryViewTitle" style="font-size:2rem; font-weight:900; color:var(--primary); margin-bottom:8px;">التصنيف</h2>
+          <p id="categoryViewDesc" style="color:var(--text-muted); font-size:1rem;"></p>
+        </div>
+        <div class="products-grid" id="categoryProductsGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: PRODUCT DETAILS PAGE (PDP) -->
+    <div id="view-product" class="view-container">
+      <div class="container">
+        
+        <div class="product-detail-layout">
+          <!-- Gallery Column -->
+          <div class="product-gallery">
+            <div class="main-image-wrap">
+              <img id="pdpMainImg" src="" alt="صورة المنتج" class="main-gallery-img">
+            </div>
+            <div class="thumbnails-row" id="pdpThumbnails">
+              <!-- Thumbnails -->
+            </div>
+          </div>
+
+          <!-- Product Info Column -->
+          <div class="product-details-info">
+            <div class="breadcrumbs">
+              <a href="#home" onclick="StoreApp.showHome()">الرئيسية</a>
+              <span>/</span>
+              <span id="pdpCategoryName"></span>
+            </div>
+
+            <h1 class="product-title-large" id="pdpTitle">اسم المنتج</h1>
+            <span class="sku-badge">رمز المنتج: <span id="pdpSku"></span></span>
+
+            <div class="product-rating" style="margin-bottom:20px;">
+              <span id="pdpRating" style="font-size:1rem; font-weight:700;">★ 4.9 (42 تقييم)</span>
+              <span style="color:#10b981; font-weight:700; margin-right:12px;"><i class="fa-solid fa-circle-check"></i> تقييمات موثقة</span>
+            </div>
+
+            <!-- Price Box -->
+            <div class="price-box-large">
+              <div>
+                <span class="current" id="pdpCurrentPrice">0</span> <span style="font-size:1.2rem; font-weight:700; color:var(--primary);">ر.س</span>
+                <span class="regular-price" id="pdpRegPrice" style="font-size:1.1rem; margin-right:12px;"></span>
+              </div>
+              <span class="vat-note">شامل ضريبة القيمة المضافة 15%</span>
+            </div>
+
+            <!-- Variants Builder -->
+            <div class="variants-section" id="pdpVariantsContainer">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Stock Status Alert -->
+            <div id="pdpStockBox" class="stock-alert-box in-stock">
+              <i class="fa-solid fa-circle-check"></i> متوفر في المخزون
+            </div>
+
+            <!-- Quantity & Purchase Buttons -->
+            <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px;">
+              <label style="font-weight:700; font-size:0.95rem;">الكمية:</label>
+              <div class="qty-control" style="background:#fff; height:46px;">
+                <button class="qty-btn" style="width:40px; font-size:1.1rem;" onclick="StoreApp.changePdpQty(-1)">-</button>
+                <span class="qty-display" id="pdpQtyDisplay" style="width:40px; font-size:1rem;">1</span>
+                <button class="qty-btn" style="width:40px; font-size:1.1rem;" onclick="StoreApp.changePdpQty(1)">+</button>
+              </div>
+            </div>
+
+            <div class="purchase-actions-row">
+              <button class="btn-primary" style="flex:1.5; justify-content:center; padding:16px;" onclick="StoreApp.addToCartFromPdp()">
+                <i class="fa-solid fa-cart-plus"></i> أضف إلى السلة
+              </button>
+              <button class="btn-buy-now" onclick="StoreApp.buyNowFromPdp()">
+                <i class="fa-solid fa-bolt"></i> شراء الآن
+              </button>
+            </div>
+
+            <!-- Delivery Estimate Perk -->
+            <div class="delivery-estimate-card">
+              <i class="fa-solid fa-truck-ramp-box" style="font-size:1.8rem; color:var(--primary);"></i>
+              <div>
+                <strong style="color:var(--text-main);">توصيل فوري متوقع:</strong>
+                <p style="color:var(--text-muted); margin-top:2px;">اطلب الآن واستلم طلبك خلال 24 ساعة داخل الرياض، وخلال 48 ساعة لباقي المدن.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Product Detailed Tabs -->
+        <div class="product-tabs">
+          <div class="tab-nav">
+            <button class="tab-nav-btn active">الوصف الكامل</button>
+            <button class="tab-nav-btn">المواصفات الفنية</button>
+            <button class="tab-nav-btn">سياسة الشحن والضمان</button>
+          </div>
+          <div class="tab-content active">
+            <p id="pdpDescriptionText" style="font-size:1.05rem; line-height:1.8; color:var(--text-main);"></p>
+            <div id="pdpSpecsList" style="margin-top:24px; max-width:600px;">
+              <!-- Specs list -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Customer Reviews Section -->
+        <div class="product-reviews-section" id="pdpReviewsSection">
+          <div class="reviews-section-header">
+            <div>
+              <h2 class="section-title" style="margin-bottom:6px;">
+                <i class="fa-solid fa-star" style="color:#f59e0b;"></i> تقييمات وآراء المشترين
+              </h2>
+              <p style="color:var(--text-muted); font-size:0.92rem;">
+                تقييمات موثقة بالكامل لعملاء استلموا هذا المنتج فعلياً
+              </p>
+            </div>
+            <button class="btn-primary" onclick="StoreApp.openWriteReviewModal()" style="padding:10px 22px; font-size:0.92rem; display:inline-flex; align-items:center; gap:8px;">
+              <i class="fa-solid fa-pen-to-square"></i> أضف تقييمك للمنتج
+            </button>
+          </div>
+
+          <!-- Overall Rating & Breakdown Card -->
+          <div class="reviews-summary-card">
+            <div class="rating-big-score">
+              <div class="score-number" id="pdpAvgRatingScore">5.0</div>
+              <div class="score-stars" id="pdpAvgRatingStars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div class="score-count" id="pdpTotalReviewsCountText">بناءً على 1 تقييم موثق</div>
+              <div class="verified-purchases-badge">
+                <i class="fa-solid fa-shield-halved"></i> 100% مشترين موثقين
+              </div>
+            </div>
+
+            <!-- Star Distribution Breakdown Bars -->
+            <div class="rating-breakdown-bars">
+              <div class="rating-bar-row">
+                <span class="bar-label">5 نجوم</span>
+                <div class="bar-track"><div class="bar-fill" id="barFill5" style="width: 100%;"></div></div>
+                <span class="bar-percent" id="barPct5">100%</span>
+              </div>
+              <div class="rating-bar-row">
+                <span class="bar-label">4 نجوم</span>
+                <div class="bar-track"><div class="bar-fill" id="barFill4" style="width: 0%;"></div></div>
+                <span class="bar-percent" id="barPct4">0%</span>
+              </div>
+              <div class="rating-bar-row">
+                <span class="bar-label">3 نجوم</span>
+                <div class="bar-track"><div class="bar-fill" id="barFill3" style="width: 0%;"></div></div>
+                <span class="bar-percent" id="barPct3">0%</span>
+              </div>
+              <div class="rating-bar-row">
+                <span class="bar-label">نجمتان</span>
+                <div class="bar-track"><div class="bar-fill" id="barFill2" style="width: 0%;"></div></div>
+                <span class="bar-percent" id="barPct2">0%</span>
+              </div>
+              <div class="rating-bar-row">
+                <span class="bar-label">نجمة واحدة</span>
+                <div class="bar-track"><div class="bar-fill" id="barFill1" style="width: 0%;"></div></div>
+                <span class="bar-percent" id="barPct1">0%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reviews Feed List -->
+          <div class="reviews-feed-list" id="pdpReviewsList">
+            <!-- Populated dynamically by StoreApp.renderProductReviews() -->
+          </div>
+        </div>
+
+        <!-- Related Products Section -->
+        <div style="margin-top:64px;">
+          <h2 class="section-title">منتجات قد تعجبك أيضاً</h2>
+          <div class="products-grid" id="relatedProductsGrid" style="margin-top:24px;">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VIEW 4: CHECKOUT PAGE -->
+    <div id="view-checkout" class="view-container">
+      <div class="container">
+        
+        <!-- Standard Checkout Flow -->
+        <div id="checkoutMainLayout" class="checkout-layout">
+          <!-- Form Steps Column -->
+          <div>
+            <!-- Step 1: Customer Info -->
+            <div class="checkout-step-card">
+              <div class="step-card-header">
+                <span class="step-num">1</span>
+                <h3 style="font-size:1.15rem; font-weight:800;">بيانات العميل والتواصل</h3>
+              </div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>الاسم الكامل *</label>
+                  <input type="text" id="checkoutCustName" class="form-control" placeholder="مثال: عبدالله بن فهد الشمري" required>
+                </div>
+                <div class="form-group">
+                  <label>رقم الجوال السعودي * (05xxxxxxxx)</label>
+                  <input type="tel" id="checkoutCustPhone" class="form-control" placeholder="0501234567" maxlength="10" required>
+                </div>
+                <div class="form-group" style="grid-column: 1/-1;">
+                  <label>البريد الإلكتروني (اختياري لاستلام الفاتورة)</label>
+                  <input type="email" id="checkoutCustEmail" class="form-control" placeholder="example@domain.sa">
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Delivery Address -->
+            <div class="checkout-step-card">
+              <div class="step-card-header">
+                <span class="step-num">2</span>
+                <h3 style="font-size:1.15rem; font-weight:800;">عنوان الشحن والتوصيل</h3>
+              </div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>المدينة *</label>
+                  <select id="checkoutCustCity" class="form-control">
+                    <option value="الرياض">الرياض</option>
+                    <option value="جدة">جدة</option>
+                    <option value="الدمام">الدمام</option>
+                    <option value="مكة المكرمة">مكة المكرمة</option>
+                    <option value="المدينة المنورة">المدينة المنورة</option>
+                    <option value="الخبر">الخبر</option>
+                    <option value="أبها">أبها</option>
+                    <option value="تبوك">تبوك</option>
+                    <option value="بريدة">بريدة</option>
+                    <option value="حائل">حائل</option>
+                    <option value="جازان">جازان</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>الحي واسم الشارع *</label>
+                  <input type="text" id="checkoutCustAddress" class="form-control" placeholder="مثال: حي النرجس، شارع عثمان بن عفان" required>
+                </div>
+
+                <!-- Interactive Map Location Picker (Google Maps) -->
+                <div class="form-group" style="grid-column: 1/-1;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <label style="font-weight:800; display:flex; align-items:center; gap:8px;">
+                      <i class="fa-solid fa-map-location-dot" style="color:var(--primary);"></i>
+                      <span>تحديد موقع الاستلام بدقة عبر الخريطة (Google Maps)</span>
+                    </label>
+                    <button type="button" class="btn-admin-outline" style="padding:4px 12px; font-size:0.8rem; border-radius:var(--radius-full); cursor:pointer; background:#ffffff; border:1px solid var(--border-color);" onclick="StoreApp.locateCustomerGps()">
+                      <i class="fa-solid fa-crosshairs" style="color:#2563eb;"></i> موقعي الحالي (GPS)
+                    </button>
+                  </div>
+
+                  <div class="map-picker-wrapper">
+                    <!-- Topbar with quick city jumps -->
+                    <div class="map-picker-topbar">
+                      <div class="map-city-pills">
+                        <span class="map-city-pill active" onclick="StoreApp.jumpMapToCity('الرياض', 24.7136, 46.6753)">الرياض</span>
+                        <span class="map-city-pill" onclick="StoreApp.jumpMapToCity('جدة', 21.4858, 39.1925)">جدة</span>
+                        <span class="map-city-pill" onclick="StoreApp.jumpMapToCity('الدمام', 26.4207, 50.0888)">الدمام</span>
+                        <span class="map-city-pill" onclick="StoreApp.jumpMapToCity('مكة المكرمة', 21.3891, 39.8579)">مكة</span>
+                        <span class="map-city-pill" onclick="StoreApp.jumpMapToCity('المدينة المنورة', 24.5247, 39.5692)">المدينة</span>
+                        <span class="map-city-pill" onclick="StoreApp.jumpMapToCity('الخبر', 26.2172, 50.1971)">الخبر</span>
+                      </div>
+                      <a id="externalGoogleMapsLink" href="https://www.google.com/maps?q=24.7136,46.6753" target="_blank" style="font-size:0.78rem; color:#2563eb; text-decoration:none; font-weight:700; display:flex; align-items:center; gap:4px;">
+                        <i class="fa-brands fa-google"></i> فتح في خرائط Google
+                      </a>
+                    </div>
+
+                    <!-- Interactive Map Canvas / Grid -->
+                    <div class="map-canvas-container" id="checkoutInteractiveMap" onclick="StoreApp.handleMapClick(event)">
+                      <div class="map-street-grid">
+                        <div class="map-artery-road-h"></div>
+                        <div class="map-artery-road-v"></div>
+                      </div>
+                      
+                      <!-- Draggable Marker Pin -->
+                      <div class="map-pin-marker" id="mapLocationPin" style="top:50%; left:50%;">
+                        <div class="pin-bubble" id="pinDistrictBubble">📍 حي النرجس، الرياض</div>
+                        <i class="fa-solid fa-location-dot pin-icon"></i>
+                      </div>
+                    </div>
+
+                    <!-- Bottombar with coordinates & confirm button -->
+                    <div class="map-picker-bottombar">
+                      <div style="display:flex; align-items:center; gap:8px;">
+                        <span class="map-coords-badge" id="mapCoordinatesReadout">24.713600, 46.675300</span>
+                        <span id="mapConfirmedBadge" style="display:inline-flex; align-items:center; gap:4px; font-size:0.8rem; color:#059669; font-weight:800; background:#ecfdf5; padding:4px 8px; border-radius:4px; border:1px solid #bbf7d0;">
+                          <i class="fa-solid fa-circle-check"></i> تم تثبيت الموقع
+                        </span>
+                      </div>
+                      <button type="button" class="btn-primary" style="padding:6px 14px; font-size:0.82rem; cursor:pointer;" onclick="StoreApp.confirmMapLocation()">
+                        <i class="fa-solid fa-check"></i> اعتماد هذا الموقع للشحن
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Hidden coordinate fields -->
+                  <input type="hidden" id="checkoutLocationLat" value="24.713600">
+                  <input type="hidden" id="checkoutLocationLng" value="46.675300">
+                </div>
+
+                <div class="form-group" style="grid-column: 1/-1;">
+                  <label>ملاحظات التوصيل لمندوب الشحن</label>
+                  <textarea id="checkoutOrderNotes" class="form-control" rows="2" placeholder="أقرب معلم بارز، رقم الفيلا أو الشقة..."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Shipping Carriers -->
+            <div class="checkout-step-card">
+              <div class="step-card-header">
+                <span class="step-num">3</span>
+                <h3 style="font-size:1.15rem; font-weight:800;">شركة التوصيل والشحن</h3>
+              </div>
+              <div class="selectable-options-list">
+                <div class="select-card active">
+                  <div class="select-card-left">
+                    <div class="select-radio"></div>
+                    <div>
+                      <div style="font-weight:800;">سمسا إكسبريس (SMSA Express)</div>
+                      <div style="font-size:0.8rem; color:var(--text-muted);">توصيل لباب البيت خلال 24 - 48 ساعة لكافة المدن</div>
+                    </div>
+                  </div>
+                  <strong style="color:var(--primary);">28 ر.س (أو مجاني فوق 350 ر.س)</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Payment Gateways -->
+            <div class="checkout-step-card">
+              <div class="step-card-header">
+                <span class="step-num">4</span>
+                <h3 style="font-size:1.15rem; font-weight:800;">وسيلة الدفع الإلكتروني</h3>
+              </div>
+              <div class="selectable-options-list">
+                <!-- Wallet Payment Option -->
+                <div class="select-card payment-card-option" id="paymentOptWallet" onclick="StoreApp.selectPaymentMethod('wallet', this)">
+                  <div class="select-card-left">
+                    <div class="select-radio"></div>
+                    <div>
+                      <div style="font-weight:800; display:flex; align-items:center; gap:8px;">
+                        <span>المحفظة الرقمية (رصيد الاسترداد والمشتريات)</span>
+                        <span id="checkoutWalletBadge" style="background:#ecfdf5; color:#065f46; font-size:0.75rem; padding:2px 8px; border-radius:4px; font-weight:800;">رصيدك: <span id="checkoutWalletBalanceText">0.00</span> ر.س</span>
+                      </div>
+                      <div style="font-size:0.8rem; color:var(--text-muted);">الشراء المباشر والخصم الفوري من رصيد محفظتك بالمتجر</div>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-wallet" style="font-size:1.4rem; color:var(--primary);"></i>
+                </div>
+
+                <!-- Mada Option -->
+                <div class="select-card payment-card-option active" onclick="StoreApp.selectPaymentMethod('mada', this)">
+                  <div class="select-card-left">
+                    <div class="select-radio"></div>
+                    <div>
+                      <div style="font-weight:800; display:flex; align-items:center; gap:8px;">
+                        <span>بطاقة مدى (Mada)</span>
+                        <span style="background:#ecfdf5; color:#065f46; font-size:0.75rem; padding:2px 8px; border-radius:4px; font-weight:800;">الأكثر استخداماً</span>
+                      </div>
+                      <div style="font-size:0.8rem; color:var(--text-muted);">دفع مباشر فوري آمن وموثق برمز تحقق بنكي</div>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-credit-card" style="font-size:1.4rem; color:var(--primary);"></i>
+                </div>
+
+                <!-- Apple Pay Option -->
+                <div class="select-card payment-card-option" onclick="StoreApp.selectPaymentMethod('apple_pay', this)">
+                  <div class="select-card-left">
+                    <div class="select-radio"></div>
+                    <div>
+                      <div style="font-weight:800;">Apple Pay</div>
+                      <div style="font-size:0.8rem; color:var(--text-muted);">الدفع بلمسة واحدة عبر أجهزة Apple</div>
+                    </div>
+                  </div>
+                  <i class="fa-brands fa-apple" style="font-size:1.6rem;"></i>
+                </div>
+
+                <!-- Credit Card Option -->
+                <div class="select-card payment-card-option" onclick="StoreApp.selectPaymentMethod('credit_card', this)">
+                  <div class="select-card-left">
+                    <div class="select-radio"></div>
+                    <div>
+                      <div style="font-weight:800;">بطاقة ائتمانية (Visa / MasterCard)</div>
+                      <div style="font-size:0.8rem; color:var(--text-muted);">دفع إلكتروني محمي بمعيار 3D Secure</div>
+                    </div>
+                  </div>
+                  <i class="fa-brands fa-cc-visa" style="font-size:1.4rem;"></i>
+                </div>
+
+                <!-- Tamara / Tabby Option -->
+                <div class="select-card payment-card-option" onclick="StoreApp.selectPaymentMethod('tamara', this)">
+                  <div class="select-card-left">
+                    <div class="select-radio"></div>
+                    <div>
+                      <div style="font-weight:800;">تمارا (قسّمها على 4 دفعات بدون فوائد)</div>
+                      <div style="font-size:0.8rem; color:var(--text-muted);">ادفع ربع المبلغ اليوم وقسّم الباقي على 3 أشهر</div>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-calendar-check" style="font-size:1.3rem; color:var(--secondary);"></i>
+                </div>
+
+                <!-- Cash on Delivery -->
+                <div class="select-card payment-card-option" onclick="StoreApp.selectPaymentMethod('cod', this)">
+                  <div class="select-card-left">
+                    <div class="select-radio"></div>
+                    <div>
+                      <div style="font-weight:800;">الدفع عند الاستلام</div>
+                      <div style="font-size:0.8rem; color:var(--text-muted);">سدد قيمة الطلب للمندوب عند استلام الشحنة</div>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-money-bill-wave" style="font-size:1.3rem; color:var(--text-muted);"></i>
+                </div>
+              </div>
+
+              <!-- Interactive Mada / Credit Card Payment Form Box -->
+              <div id="cardPaymentFormBox" class="card-payment-form-box">
+                <!-- Visual Card Preview -->
+                <div class="mada-card-visual">
+                  <div class="card-visual-top">
+                    <div class="card-visual-chip"></div>
+                    <div class="card-brand-badge" id="cardBrandBadge">mada مدى</div>
+                  </div>
+                  <div class="card-number-live" id="cardPreviewNumber">•••• •••• •••• ••••</div>
+                  <div class="card-meta-live">
+                    <div class="card-meta-col">
+                      <span>حامل البطاقة / CARDHOLDER</span>
+                      <strong id="cardPreviewName">SAUDI CARDHOLDER</strong>
+                    </div>
+                    <div class="card-meta-col" style="text-align:left;">
+                      <span>الانتهاء / EXPIRES</span>
+                      <strong id="cardPreviewExpiry">MM/YY</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- One-click test cards for immediate testing -->
+                <div style="margin-bottom:12px;">
+                  <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700; display:block; margin-bottom:6px;">
+                    اختبار تجريبي فوري للتحقق من الرصيد والبطاقة:
+                  </span>
+                  <div class="test-cards-chips-row">
+                    <button type="button" class="test-card-btn" onclick="StoreApp.fillTestCard('sufficient')" title="تعبئة بطاقة مدى صالحة برصيد كافٍ">
+                      <i class="fa-solid fa-circle-check" style="color:#10b981;"></i> بطاقة مدى (رصيد كافٍ ✅)
+                    </button>
+                    <button type="button" class="test-card-btn" onclick="StoreApp.fillTestCard('insufficient')" title="تعبئة بطاقة لا يوجد بها رصيد كافٍ">
+                      <i class="fa-solid fa-triangle-exclamation" style="color:#ef4444;"></i> بطاقة برصيد غير كافٍ (❌ رفض بنكي)
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Form Inputs -->
+                <div class="form-grid" style="gap:12px;">
+                  <div class="form-group" style="grid-column: 1/-1;">
+                    <label style="display:flex; justify-content:space-between;">
+                      <span>رقم بطاقة مدى / الائتمان (16 رقماً) *</span>
+                      <span id="cardLuhnValidationStatus" style="font-size:0.75rem; font-weight:800; color:var(--text-muted);"></span>
+                    </label>
+                    <div style="position:relative;">
+                      <input type="text" id="checkoutCardNumber" class="form-control" placeholder="5888 4500 0000 0000" maxlength="19" dir="ltr" style="text-align:left; letter-spacing:2px; font-weight:700; font-family:monospace;" oninput="StoreApp.handleCardNumberInput(this)">
+                      <i class="fa-solid fa-credit-card" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--text-muted);"></i>
+                    </div>
+                  </div>
+
+                  <div class="form-group" style="grid-column: 1/-1;">
+                    <label>اسم حامل البطاقة (كما هو مطبوع على البطاقة) *</label>
+                    <input type="text" id="checkoutCardName" class="form-control" placeholder="مثال: ABDULLAH AL-SHAMMARI" oninput="StoreApp.handleCardNameInput(this)">
+                  </div>
+
+                  <div class="form-group">
+                    <label>تاريخ الانتهاء (شهر/سنة) *</label>
+                    <input type="text" id="checkoutCardExpiry" class="form-control" placeholder="MM/YY" maxlength="5" dir="ltr" style="text-align:center; font-weight:700;" oninput="StoreApp.handleCardExpiryInput(this)">
+                  </div>
+
+                  <div class="form-group">
+                    <label>رمز التحقق (CVV) *</label>
+                    <input type="password" id="checkoutCardCvv" class="form-control" placeholder="•••" maxlength="3" dir="ltr" style="text-align:center; font-weight:700;" oninput="StoreApp.handleCardCvvInput(this)">
+                  </div>
+                </div>
+
+                <div style="margin-top:12px; font-size:0.76rem; color:var(--text-muted); display:flex; align-items:center; gap:6px;">
+                  <i class="fa-solid fa-shield-halved" style="color:var(--primary);"></i>
+                  <span>معالجة آمنة مشفرة بمعيار PCI-DSS بالربط مع البنك المركزي السعودي (ساما) وشبكة مدى.</span>
+                </div>
+              </div>
+
+              <!-- Interactive Wallet Payment Info Box -->
+              <div id="walletPaymentInfoBox" style="display:none; background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:20px; margin-top:16px;">
+                <div style="display:flex; align-items:center; gap:14px; margin-bottom:12px;">
+                  <div style="width:44px; height:44px; border-radius:50%; background:#dcfce7; color:#15803d; display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
+                    <i class="fa-solid fa-wallet"></i>
+                  </div>
+                  <div>
+                    <h4 style="font-size:1.05rem; font-weight:800; color:#166534; margin-bottom:2px;">الدفع المباشر من المحفظة الرقمية</h4>
+                    <p style="font-size:0.82rem; color:#15803d; margin:0;">سيتم خصم قيمة الطلب فورياً من رصيدك المتاح، ويتم تأكيد الطلب فوراً دون انتظار.</p>
+                  </div>
+                </div>
+                <div style="background:#fff; border:1px solid #bbf7d0; border-radius:8px; padding:14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                  <div>
+                    <span style="font-size:0.85rem; color:var(--text-muted);">رصيد المحفظة المتوفر:</span>
+                    <strong id="walletCheckoutAvailBalance" style="font-size:1.15rem; color:#166534; margin-right:6px;">0.00 ر.س</strong>
+                  </div>
+                  <div id="walletSufficiencyIndicator" style="font-size:0.85rem; font-weight:800;">
+                    <!-- Updated dynamically by JS -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Checkout Order Summary Sidebar -->
+          <div class="order-summary-sidebar">
+            <div class="order-summary-card">
+              <h3 style="font-size:1.2rem; font-weight:800; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--border-color);">
+                ملخص الطلب
+              </h3>
+
+              <div class="summary-items-list" id="checkoutItemsList">
+                <!-- Cart items list -->
+              </div>
+
+              <div class="cart-totals-summary">
+                <div class="cart-total-line">
+                  <span>المجموع الفرعي للمنتجات:</span>
+                  <span id="checkoutSubtotal">0.00 ر.س</span>
+                </div>
+                <div class="cart-total-line" style="color:#ef4444;">
+                  <span>كوبون الخصم:</span>
+                  <span id="checkoutDiscount">0.00 ر.س</span>
+                </div>
+                <div class="cart-total-line">
+                  <span>رسوم الشحن والتوصيل:</span>
+                  <span id="checkoutShipping">مجاني</span>
+                </div>
+                <div class="cart-total-line">
+                  <span>ضريبة القيمة المضافة (15%):</span>
+                  <span id="checkoutVat">0.00 ر.س</span>
+                </div>
+                <div class="cart-total-line grand-total">
+                  <span>الإجمالي النهائي المطلوب:</span>
+                  <span id="checkoutGrandTotal">0.00 ر.س</span>
+                </div>
+              </div>
+
+              <button class="btn-checkout" style="margin-top:20px;" onclick="StoreApp.processOrder()">
+                <i class="fa-solid fa-lock"></i> إتمام الشراء وتأكيد الطلب
+              </button>
+
+              <div style="text-align:center; margin-top:16px; font-size:0.78rem; color:var(--text-muted);">
+                <i class="fa-solid fa-shield-check" style="color:#10b981;"></i>
+                بالضغط على إتمام الشراء، أنت توافق على شروط الخدمة وسياسة الخصوصية
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Success & ZATCA Invoice Confirmation Screen -->
+        <div id="orderSuccessScreen" class="order-success-card" style="display:none;">
+          <div class="success-icon-wrap">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <h2 style="font-size:2rem; font-weight:900; color:var(--primary); margin-bottom:8px;">تم تأكيد طلبك بنجاح! 🎉</h2>
+          <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:24px;">شكراً لثقتكم بمتجر النخبة السعودي. تم استلام طلبك وجاري تجهيزه للشحن الآن.</p>
+
+          <div style="background:var(--bg-subtle); border-radius:var(--radius-lg); padding:24px; text-align:right; margin-bottom:24px; border:1px solid var(--border-color);">
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:1.1rem;">
+              <strong>رقم الطلب:</strong>
+              <strong id="successOrderNumber" style="color:var(--primary); font-family:monospace; font-size:1.25rem;">#ORD-98421</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.95rem;">
+              <span>اسم العميل:</span>
+              <span id="successCustomerName"></span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.95rem;">
+              <span>رقم الجوال:</span>
+              <span id="successCustomerPhone" dir="ltr"></span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.95rem;">
+              <span>مدينة التوصيل:</span>
+              <span id="successOrderCity"></span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.95rem;">
+              <span>رقم بوليصة التتبع:</span>
+              <span id="successTrackingNumber" style="font-weight:700; color:#10b981;"></span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:1.15rem; font-weight:900; border-top:1px dashed var(--border-color); padding-top:12px; margin-top:12px; color:var(--primary);">
+              <span>المبلغ الإجمالي المدفوع:</span>
+              <span id="successOrderTotal"></span>
+            </div>
+          </div>
+
+          <!-- Official ZATCA QR Code Display -->
+          <div style="margin-bottom:24px;">
+            <div style="font-weight:800; font-size:0.9rem; color:var(--text-main); margin-bottom:10px;">
+              رمز الاستجابة السريع للفوترة الإلكترونية (ZATCA QR Code)
+            </div>
+            <div id="successZatcaQr" style="display:inline-block;"></div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:6px;">
+              فاتورة ضريبية مبسطة معتمدة وفق متطلبات هيئة الزكاة والضريبة والجمارك
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:16px;">
+            <button class="btn-primary" onclick="StoreApp.printSuccessInvoice()" style="padding:12px 24px; font-weight:800; box-shadow:0 4px 14px rgba(13,92,70,0.25);">
+              <i class="fa-solid fa-print"></i> طباعة الفاتورة الضريبية الرسمية
+            </button>
+            <button class="btn-outline" onclick="StoreApp.previewSuccessInvoice()" style="padding:12px 22px; font-weight:800; border:1.5px solid var(--primary); color:var(--primary); background:#fff; border-radius:var(--radius-md); cursor:pointer;">
+              <i class="fa-solid fa-file-invoice-dollar"></i> معاينة الفاتورة كاملة 📄
+            </button>
+            <button class="btn-admin-outline" onclick="StoreApp.showHome()" style="padding:12px 20px;">
+              العودة للمتجر
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VIEW 5: CUSTOMER ACCOUNT / PORTAL -->
+    <div id="view-account" class="view-container">
+      <div class="container" style="padding:40px 0;">
+        <div style="background:#fff; border-radius:var(--radius-xl); border:1px solid var(--border-color); padding:32px; box-shadow:var(--shadow-sm);">
+          <!-- Dynamic Personalized Customer Profile Card -->
+          <div id="customerProfileCard" style="margin-bottom:24px;"></div>
+          <div id="customerWalletCard" style="background: linear-gradient(135deg, #0d5c46 0%, #063d2e 60%, #c29b38 100%); color:#fff; border-radius:var(--radius-lg); padding:24px 28px; margin-bottom:28px; box-shadow:0 10px 25px -5px rgba(13,92,70,0.3); position:relative; overflow:hidden;">
+            <div style="position:absolute; right:-20px; bottom:-20px; opacity:0.1; font-size:10rem; pointer-events:none;">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; position:relative; z-index:2;">
+              <div>
+                <div style="font-size:0.85rem; color:rgba(255,255,255,0.85); font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:8px;">
+                  <i class="fa-solid fa-wallet" style="color:#fde047;"></i> محفظتي الرقمية (رصيد الاسترداد والمشتريات)
+                </div>
+                <div style="display:flex; align-items:baseline; gap:10px;">
+                  <span id="accountWalletBalance" style="font-size:2.4rem; font-weight:900; letter-spacing:-0.5px;">0.00</span>
+                  <span style="font-size:1.15rem; font-weight:800; color:#fde047;">ر.س</span>
+                </div>
+                <div style="font-size:0.8rem; color:rgba(255,255,255,0.8); margin-top:4px;">
+                  يتم إيداع مبالغ الاسترجاع والإلغاء هنا فوراً، ويمكنك استخدام هذا الرصيد للدفع عند الشراء مباشرة 💳
+                </div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <button type="button" class="btn-outline" style="background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.4); color:#fff; padding:10px 18px; border-radius:8px; font-weight:800; font-size:0.85rem; cursor:pointer;" onclick="StoreApp.openWalletTransactionsModal()">
+                  <i class="fa-solid fa-clock-rotate-left"></i> سجل حركات المحفظة
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:18px;">
+            <h3 style="font-size:1.25rem; font-weight:800; margin:0; display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-box" style="color:var(--primary);"></i> سجل طلباتي واسترجاعاتي الخاصة</h3>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button type="button" class="order-filter-btn active" onclick="StoreApp.setAccountOrdersFilter('all', this)" style="padding:6px 14px; border-radius:8px; border:1px solid var(--primary, #0d5c46); background:var(--primary, #0d5c46); color:#fff; font-size:0.82rem; font-weight:800; cursor:pointer;">كل طلباتي</button>
+              <button type="button" class="order-filter-btn" onclick="StoreApp.setAccountOrdersFilter('active', this)" style="padding:6px 14px; border-radius:8px; border:1px solid #cbd5e1; background:#f1f5f9; color:#475569; font-size:0.82rem; font-weight:700; cursor:pointer;">قيد التنفيذ والشحن</button>
+              <button type="button" class="order-filter-btn" onclick="StoreApp.setAccountOrdersFilter('completed', this)" style="padding:6px 14px; border-radius:8px; border:1px solid #cbd5e1; background:#f1f5f9; color:#475569; font-size:0.82rem; font-weight:700; cursor:pointer;">المكتملة</button>
+              <button type="button" class="order-filter-btn" onclick="StoreApp.setAccountOrdersFilter('returns', this)" style="padding:6px 14px; border-radius:8px; border:1px solid #fde68a; background:#fffbeb; color:#b45309; font-size:0.82rem; font-weight:800; cursor:pointer;"><i class="fa-solid fa-rotate-left"></i> طلبات الاسترجاع فقط</button>
+            </div>
+          </div>
+          <div id="accountOrdersList">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 6: CMS PAGES (ABOUT, RETURNS, ETC) -->
+    <div id="view-page" class="view-container">
+      <div class="container" style="padding:48px 0;">
+        <div style="background:#fff; border-radius:var(--radius-xl); border:1px solid var(--border-color); padding:40px; box-shadow:var(--shadow-sm); max-width:860px; margin:0 auto;">
+          <h2 id="pageTitle" style="font-size:2rem; font-weight:900; color:var(--primary); margin-bottom:20px; border-bottom:2px solid var(--primary-light); padding-bottom:14px;"></h2>
+          <div id="pageContent" style="font-size:1.1rem; line-height:2; color:var(--text-main); white-space:pre-line;"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Slide-over Cart Drawer -->
+  <div class="drawer-backdrop" id="cartDrawerBackdrop" onclick="StoreApp.closeCartDrawer()"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="drawer-header">
+      <h3><i class="fa-solid fa-bag-shopping" style="color:var(--primary);"></i> سلة التسوق</h3>
+      <button class="close-drawer-btn" onclick="StoreApp.closeCartDrawer()" aria-label="إغلاق السلة">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress -->
+    <div class="free-shipping-meter">
+      <div id="freeShippingText">أضف بـ 52.00 ر.س أخرى للحصول على شحن مجاني 🚚</div>
+      <div class="meter-track">
+        <div class="meter-fill" id="freeShippingFill" style="width: 70%;"></div>
+      </div>
+    </div>
+
+    <!-- Drawer Body -->
+    <div class="drawer-body" id="cartDrawerItems">
+      <!-- Dynamic cart items -->
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="drawer-footer">
+      <!-- Coupon input -->
+      <div class="coupon-row">
+        <input type="text" id="couponCodeInput" class="coupon-input" placeholder="أدخل كود الخصم (مثال: SALLA10)">
+        <button class="coupon-apply-btn" onclick="StoreApp.applyCouponCode()">تطبيق</button>
+      </div>
+
+      <!-- Financial Totals -->
+      <div class="cart-totals-summary">
+        <div class="cart-total-line">
+          <span>المجموع الفرعي:</span>
+          <span id="cartDrawerSubtotal">0.00 ر.س</span>
+        </div>
+        <div class="cart-total-line" style="color:#ef4444;">
+          <span>الخصم:</span>
+          <span id="cartDrawerDiscount">-0.00 ر.س</span>
+        </div>
+        <div class="cart-total-line">
+          <span>الشحن:</span>
+          <span id="cartDrawerShipping">مجاني</span>
+        </div>
+        <div class="cart-total-line">
+          <span>الضريبة (15%):</span>
+          <span id="cartDrawerVat">0.00 ر.س</span>
+        </div>
+        <div class="cart-total-line grand-total">
+          <span>الإجمالي النهائي:</span>
+          <span id="cartDrawerTotal">0.00 ر.س</span>
+        </div>
+      </div>
+
+      <button class="btn-checkout" onclick="StoreApp.showCheckout()">
+        متابعة إتمام الطلب <i class="fa-solid fa-arrow-left"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Store info & Commercial IDs -->
+        <div class="footer-col">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <img src="assets/images/logo.jpg" alt="متجر النخبة" style="width:48px; height:48px; border-radius:10px;">
+            <h3 style="color:#fff; font-size:1.3rem; font-weight:800;">متجر النخبة السعودي</h3>
+          </div>
+          <p style="color:#94a3b8; font-size:0.9rem; line-height:1.7; margin-bottom:16px;">
+            منصة تجارة إلكترونية سعودية مرخصة تقدم أرقى المنتجات الفاخرة بأعلى معايير الجودة والمصداقية، مع توثيق رسمي وفواتير ضريبية معتمدة.
+          </p>
+          <div class="compliance-badge">
+            <div><i class="fa-solid fa-id-card"></i> <strong>السجل التجاري:</strong> 1010987654</div>
+            <div style="margin-top:4px;"><i class="fa-solid fa-file-invoice"></i> <strong>الرقم الضريبي:</strong> 310123456700003</div>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul class="footer-links">
+            <li><a href="#home" onclick="StoreApp.showHome()">الرئيسية</a></li>
+            <li><a href="#category/all" onclick="StoreApp.showCategory(null)">جميع المنتجات</a></li>
+            <li><a href="#account" onclick="StoreApp.showAccount()">حسابي وطلباتي</a></li>
+            <li><a href="admin.html">لوحة تحكم التاجر</a></li>
+          </ul>
+        </div>
+
+        <!-- Policies -->
+        <div class="footer-col">
+          <h4>السياسات والشروط</h4>
+          <ul class="footer-links">
+            <li><a href="#page/about" onclick="StoreApp.showPage('about')">من نحن</a></li>
+            <li><a href="#page/returns" onclick="StoreApp.showPage('returns')">الاستبدال والاسترجاع</a></li>
+            <li><a href="#page/privacy" onclick="StoreApp.showPage('privacy')">سياسة الخصوصية</a></li>
+            <li><a href="#page/shipping" onclick="StoreApp.showPage('shipping')">الشحن والتوصيل</a></li>
+            <li><a href="#page/faq" onclick="StoreApp.showPage('faq')">الأسئلة الشائعة</a></li>
+          </ul>
+        </div>
+
+        <!-- Payments & Contact -->
+        <div class="footer-col">
+          <h4>وسائل الدفع المعتمدة</h4>
+          <div class="payment-gateways-icons">
+            <span class="gateway-badge"><i class="fa-solid fa-credit-card"></i> مدى</span>
+            <span class="gateway-badge"><i class="fa-brands fa-apple"></i> Apple Pay</span>
+            <span class="gateway-badge"><i class="fa-brands fa-cc-visa"></i> Visa</span>
+            <span class="gateway-badge"><i class="fa-brands fa-cc-mastercard"></i> MasterCard</span>
+            <span class="gateway-badge"><i class="fa-solid fa-calendar-check"></i> Tamara</span>
+          </div>
+
+          <h4 style="margin-top:24px;">قنوات التواصل</h4>
+          <div style="font-size:0.9rem; color:#cbd5e1; display:flex; flex-direction:column; gap:6px;">
+            <span><i class="fa-brands fa-whatsapp" style="color:#22c55e;"></i> واتساب: 966501234567</span>
+            <span><i class="fa-solid fa-envelope" style="color:#38bdf8;"></i> care@alnukhbah.sa</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>جميع الحقوق محفوظة © 2026 لـ متجر النخبة السعودي. موثق في منصة الأعمال السعودية.</div>
+        <div style="display:flex; gap:16px; font-size:1.2rem;">
+          <a href="#" style="color:#94a3b8;"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" style="color:#94a3b8;"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" style="color:#94a3b8;"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" style="color:#94a3b8;"><i class="fa-brands fa-snapchat"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL: WRITE VERIFIED CUSTOMER REVIEW -->
+  <div class="store-modal-overlay" id="writeReviewModal">
+    <div class="store-modal-box">
+      <div class="store-modal-header">
+        <h3 style="font-size:1.15rem; font-weight:800; display:flex; align-items:center; gap:8px;">
+          <i class="fa-solid fa-star" style="color:#f59e0b;"></i> كتابة تقييم ومراجعة للمنتج
+        </h3>
+        <button type="button" onclick="StoreApp.closeWriteReviewModal()" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="store-modal-body">
+        <!-- Target Product Summary -->
+        <div style="display:flex; align-items:center; gap:12px; background:var(--bg-main); padding:12px; border-radius:var(--radius-md); margin-bottom:18px;">
+          <img id="reviewModalProdImg" src="" alt="صورة المنتج" style="width:50px; height:50px; object-fit:cover; border-radius:8px;">
+          <div>
+            <strong id="reviewModalProdTitle" style="font-size:0.95rem; color:var(--text-main); display:block;"></strong>
+            <span style="font-size:0.75rem; color:var(--text-muted);">تقييم مشتري موثق</span>
+          </div>
+        </div>
+
+        <!-- Step 1: Verified Buyer Phone/Order Verification -->
+        <div id="reviewStepVerification" style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:var(--radius-md); padding:16px; margin-bottom:20px;">
+          <div style="font-weight:800; font-size:0.92rem; color:var(--text-main); margin-bottom:6px; display:flex; align-items:center; gap:8px;">
+            <i class="fa-solid fa-shield-halved" style="color:var(--primary);"></i> الخطوة 1: التحقق من الشراء المسبق
+          </div>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px;">
+            حفاظاً على نزاهة ومصداقية التقييمات، يسمح بالتقييم حصراً للعملاء الذين اشتروا هذا المنتج مسبقاً وتأكد طلبهم.
+          </p>
+
+          <div style="display:flex; gap:8px;">
+            <input type="text" id="reviewVerifyPhoneInput" class="form-control" placeholder="أدخل رقم جوالك (مثال: 0501234567) أو رقم الطلب" style="flex:1;">
+            <button type="button" class="btn-primary" style="padding:8px 16px; white-space:nowrap; cursor:pointer;" onclick="StoreApp.verifyCustomerPurchase()">
+              تحقق من الشراء
+            </button>
+          </div>
+
+          <!-- Quick Test Hints for Verified Buyers -->
+          <div style="margin-top:10px; font-size:0.75rem; color:var(--text-muted);">
+            💡 <strong>للتجربة السريعة (مشترين مؤكدين):</strong> 
+            <span style="cursor:pointer; color:#2563eb; text-decoration:underline;" onclick="document.getElementById('reviewVerifyPhoneInput').value='0501234567'; StoreApp.verifyCustomerPurchase();">0501234567</span> أو 
+            <span style="cursor:pointer; color:#2563eb; text-decoration:underline;" onclick="document.getElementById('reviewVerifyPhoneInput').value='0559876543'; StoreApp.verifyCustomerPurchase();">0559876543</span> أو 
+            <span style="cursor:pointer; color:#2563eb; text-decoration:underline;" onclick="document.getElementById('reviewVerifyPhoneInput').value='ORD-98421'; StoreApp.verifyCustomerPurchase();">ORD-98421</span>
+          </div>
+
+          <!-- Verification Feedback Alert -->
+          <div id="reviewVerificationFeedback" style="margin-top:12px; display:none;"></div>
+        </div>
+
+        <!-- Step 2: Rating Stars & Review Content (Unlocked on verification) -->
+        <div id="reviewStepContent" style="display:none;">
+          <div style="margin-bottom:16px;">
+            <label style="font-weight:800; font-size:0.9rem; color:var(--text-main); display:block; margin-bottom:4px;">
+              تقييمك للمنتج (من 1 إلى 5 نجوم) *
+            </label>
+            <div class="star-rating-picker" id="modalStarPicker">
+              <i class="fa-solid fa-star star-item selected" data-value="1" onclick="StoreApp.setStarRating(1)"></i>
+              <i class="fa-solid fa-star star-item selected" data-value="2" onclick="StoreApp.setStarRating(2)"></i>
+              <i class="fa-solid fa-star star-item selected" data-value="3" onclick="StoreApp.setStarRating(3)"></i>
+              <i class="fa-solid fa-star star-item selected" data-value="4" onclick="StoreApp.setStarRating(4)"></i>
+              <i class="fa-solid fa-star star-item selected" data-value="5" onclick="StoreApp.setStarRating(5)"></i>
+            </div>
+            <span id="starRatingLabel" style="font-size:0.85rem; font-weight:700; color:#f59e0b;">5 من 5 - ممتاز جداً 🌟</span>
+          </div>
+
+          <div class="form-group" style="margin-bottom:16px;">
+            <label style="font-weight:800; font-size:0.9rem; color:var(--text-main);">وصف تجربتك ورأيك في المنتج *</label>
+            <textarea id="reviewCommentInput" class="form-control" rows="4" placeholder="اكتب وصفاً مفصلاً لتجربتك (الجودة، الرائحة/الخامة، التغليف، سرعة التوصيل)..."></textarea>
+          </div>
+
+          <button type="button" class="btn-primary" style="width:100%; padding:14px; font-size:1rem; justify-content:center; cursor:pointer;" onclick="StoreApp.submitCustomerReview()">
+            <i class="fa-solid fa-check"></i> اعتماد ونشر التقييم في المتجر
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: 3D-SECURE BANK AUTHORIZATION & BALANCE CHECK SIMULATION -->
+  <div class="store-modal-overlay" id="madaAuthModal">
+    <div class="store-modal-box" style="max-width:480px; text-align:center;">
+      <div class="store-modal-body" style="padding:36px 24px;">
+        <!-- Processing State -->
+        <div id="madaModalProcessingState">
+          <div style="font-size:3rem; color:var(--primary); margin-bottom:16px;">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+          </div>
+          <h3 style="font-size:1.3rem; font-weight:800; margin-bottom:8px;">جاري معالجة الدفع عبر مدى</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">
+            جاري الاتصال الآمن مع البنك المصدر للبطاقة والتحقق من صحة البطاقة والرصيد المتوفر...
+          </p>
+          <div style="display:inline-flex; align-items:center; gap:8px; background:#f1f5f9; padding:8px 16px; border-radius:var(--radius-full); font-size:0.8rem; font-weight:700; color:var(--text-main);">
+            <i class="fa-solid fa-shield-halved" style="color:var(--primary);"></i> تشفير بنكي فائق الحماية 256-bit
+          </div>
+        </div>
+
+        <!-- Success State -->
+        <div id="madaModalSuccessState" style="display:none;">
+          <div style="font-size:3.5rem; color:#10b981; margin-bottom:16px;">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <h3 style="font-size:1.3rem; font-weight:800; color:#065f46; margin-bottom:8px;">تم الدفع والتحقق بنجاح!</h3>
+          <p id="madaModalSuccessMsg" style="color:var(--text-main); font-size:0.95rem; line-height:1.7; margin-bottom:20px;"></p>
+        </div>
+
+        <!-- Insufficient Funds / Decline State -->
+        <div id="madaModalDeclineState" style="display:none;">
+          <div style="font-size:3.5rem; color:#ef4444; margin-bottom:16px;">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </div>
+          <h3 style="font-size:1.3rem; font-weight:800; color:#991b1b; margin-bottom:8px;">تم رفض العملية: الرصيد غير كافٍ!</h3>
+          <div style="background:#fef2f2; border:1px solid #fecaca; border-radius:var(--radius-md); padding:14px; margin-bottom:20px; text-align:right;">
+            <div style="font-weight:800; font-size:0.85rem; color:#b91c1c; margin-bottom:4px;">
+              <i class="fa-solid fa-triangle-exclamation"></i> استجابة البنك (كود: 51 - Insufficient Funds)
+            </div>
+            <p id="madaModalDeclineMsg" style="color:#7f1d1d; font-size:0.84rem; line-height:1.6; margin:0;"></p>
+          </div>
+          <button type="button" class="btn-primary" style="width:100%; padding:12px; justify-content:center; cursor:pointer;" onclick="StoreApp.closeMadaAuthModal()">
+            <i class="fa-solid fa-arrows-rotate"></i> تجربة بطاقة أخرى أو تعديل البيانات
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Dedicated Tax Invoice Print Area (Official ZATCA Sheet) -->
+  <div id="taxInvoicePrintArea" style="display:none;"></div>
+
+  <!-- Customer Tax Invoice Preview Modal -->
+  <div id="customerInvoiceModal" class="modal" style="display:none; align-items:center; justify-content:center; position:fixed; inset:0; background:rgba(15,23,42,0.75); z-index:9999; padding:20px; overflow-y:auto;">
+    <div style="background:#ffffff; border-radius:16px; max-width:880px; width:100%; max-height:92vh; display:flex; flex-direction:column; box-shadow:0 25px 60px rgba(0,0,0,0.35); overflow:hidden; border:1px solid #cbd5e1;">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:14px 20px; border-bottom:1px solid #e2e8f0; background:#f8fafc;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="background:#0d5c46; color:#fff; width:34px; height:34px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1rem;">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+          </div>
+          <div>
+            <h3 style="font-weight:900; color:#0d5c46; margin:0; font-size:1.05rem;">معاينة الفاتورة الضريبية الرسمية (ZATCA)</h3>
+            <span style="font-size:0.75rem; color:#64748b;">فاتورة ضريبية مبسطة معتمدة قابلة للطباعة والحفظ</span>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button type="button" class="btn-primary" onclick="StoreApp.printSuccessInvoice()" style="padding:8px 18px; font-size:0.85rem; font-weight:800;">
+            <i class="fa-solid fa-print"></i> طباعة الفاتورة 🖨️
+          </button>
+          <button type="button" style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:8px; width:34px; height:34px; cursor:pointer; font-weight:800; color:#475569; display:flex; align-items:center; justify-content:center; font-size:1rem;" onclick="StoreApp.closeCustomerInvoiceModal()">✕</button>
+        </div>
+      </div>
+      <div id="customerInvoiceModalContent" style="padding:20px; overflow-y:auto; flex:1; background:#f1f5f9;">
+        <!-- Dynamically injected invoice -->
+      </div>
+      <div style="padding:12px 20px; background:#f8fafc; border-top:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.76rem; color:#64748b;">متوافقة 100% مع متطلبات هيئة الزكاة والضريبة والجمارك</span>
+        <button type="button" class="btn-admin-outline" onclick="StoreApp.closeCustomerInvoiceModal()" style="padding:6px 16px; font-size:0.82rem;">إغلاق</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Customer Order & Variant Return Request Modal -->
+  <div id="customerReturnModal" class="modal" style="display:none; align-items:center; justify-content:center; position:fixed; inset:0; background:rgba(15,23,42,0.75); z-index:99999; padding:20px; overflow-y:auto;">
+    <div style="background:#ffffff; border-radius:16px; max-width:760px; width:100%; max-height:92vh; display:flex; flex-direction:column; box-shadow:0 25px 60px rgba(0,0,0,0.35); overflow:hidden; border:1px solid #cbd5e1;">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 22px; border-bottom:1px solid #e2e8f0; background:#f8fafc;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="background:#b45309; color:#fff; width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem;">
+            <i class="fa-solid fa-rotate-left"></i>
+          </div>
+          <div>
+            <h3 style="font-weight:900; color:#1e293b; margin:0; font-size:1.15rem;">طلب استرجاع منتجات / باقات</h3>
+            <span id="returnModalOrderInfo" style="font-size:0.8rem; color:#64748b;">تحديد الأصناف والمقاسات والألوان المراد استرجاعها</span>
+          </div>
+        </div>
+        <button type="button" style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:8px; width:34px; height:34px; cursor:pointer; font-weight:800; color:#475569; display:flex; align-items:center; justify-content:center; font-size:1rem;" onclick="StoreApp.closeReturnModal()">✕</button>
+      </div>
+
+      <form id="customerReturnForm" onsubmit="StoreApp.submitReturnRequest(event)" style="display:flex; flex-direction:column; flex:1; overflow:hidden;">
+        <div style="padding:22px; overflow-y:auto; flex:1;">
+
+          <!-- Scope Selection: Specific items vs Whole Order -->
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:16px; margin-bottom:18px;">
+            <div style="font-weight:800; font-size:0.92rem; color:#1e293b; margin-bottom:10px;">اختر نوع الاسترجاع المطلوب:</div>
+            <div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:8px;">
+              <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:0.9rem; font-weight:700;">
+                <input type="radio" name="returnScope" value="partial" checked onchange="StoreApp.handleReturnScopeChange('partial')" style="width:18px; height:18px; accent-color:#0d5c46;">
+                <span>استرجاع منتجات محددة (بالمقاس واللون والكمية)</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:0.9rem; font-weight:700;">
+                <input type="radio" name="returnScope" value="full" onchange="StoreApp.handleReturnScopeChange('full')" style="width:18px; height:18px; accent-color:#0d5c46;">
+                <span>استرجاع الطلب كاملاً (للأصناف المسموح بها فقط) 📦</span>
+              </label>
+            </div>
+            <div id="returnScopeNotice" style="font-size:0.82rem; color:#64748b;">
+              قم بتحديد المنتج الدقيق والمقاس أو اللون الذي تريد استرجاعه، أو اختر استرجاع الطلب كاملاً ليتم تحديد كافة الأصناف المؤهلة تلقائياً.
+            </div>
+          </div>
+
+          <!-- Items Selection List -->
+          <div style="margin-bottom:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <h4 style="font-size:0.95rem; font-weight:800; color:#1e293b; margin:0;">أصناف الطلب ومطابقتها لسياسة الاسترجاع:</h4>
+              <span id="returnEligibleNotice" style="font-size:0.8rem; font-weight:700; color:#0d5c46;"></span>
+            </div>
+            <div id="returnModalItemsContainer" style="display:flex; flex-direction:column; gap:10px;">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Return Reason & Method -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;">
+            <div>
+              <label style="font-weight:700; font-size:0.85rem; margin-bottom:6px; display:block;">سبب طلب الاسترجاع *</label>
+              <select id="returnReasonSelect" required style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #cbd5e1; font-size:0.88rem; outline:none;">
+                <option value="">-- اختر سبب الاسترجاع --</option>
+                <option value="المقاس أو الحجم غير مناسب">المقاس أو الحجم غير مناسب</option>
+                <option value="اللون يختلف عن المطلوب">اللون يختلف عن المطلوب</option>
+                <option value="المنتج غير مطابق للمواصفات">المنتج غير مطابق للمواصفات</option>
+                <option value="تلف أو كسر أثناء الشحن">تلف أو كسر أثناء الشحن</option>
+                <option value="عيب مصنعي في المنتج">عيب مصنعي في المنتج</option>
+                <option value="تغيير رأي العميل">تغيير رأي العميل (ضمن المهلة)</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-weight:700; font-size:0.85rem; margin-bottom:6px; display:block;">طريقة استرداد المبلغ</label>
+              <select id="returnRefundMethodSelect" style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #cbd5e1; font-size:0.88rem; outline:none;">
+                <option value="original">استرداد لنفس البطاقة / وسيلة الدفع</option>
+                <option value="wallet">رصيد محفظة بالمتجر (فوري)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div style="margin-bottom:16px;">
+            <label style="font-weight:700; font-size:0.85rem; margin-bottom:6px; display:block;">ملاحظات العميل والتفاصيل الإضافية (اختياري)</label>
+            <textarea id="returnCustomerNotes" rows="2" placeholder="اكتب أي ملاحظة أو وقت مناسب لمندوب الشحن لاستلام الشحنة..." style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #cbd5e1; font-size:0.88rem; outline:none;"></textarea>
+          </div>
+
+          <!-- Refund Summary Total Box -->
+          <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:10px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-size:0.85rem; font-weight:800; color:#065f46;">المبلغ المستحق للاسترداد:</div>
+              <div style="font-size:0.75rem; color:#047857; margin-top:2px;">يتم تأكيد واسترجاع المبلغ فور استلام وفحص الأصناف المرتجعة</div>
+            </div>
+            <div style="font-size:1.4rem; font-weight:900; color:#065f46;" id="returnCalculatedRefundTotal">0.00 ر.س</div>
+          </div>
+
+        </div>
+
+        <div style="padding:14px 22px; background:#f8fafc; border-top:1px solid #e2e8f0; display:flex; justify-content:flex-end; gap:10px;">
+          <button type="button" class="btn-admin-outline" onclick="StoreApp.closeReturnModal()" style="padding:8px 18px;">إلغاء</button>
+          <button type="submit" class="btn-primary" style="padding:8px 22px; font-weight:800; background:#0d5c46;">
+            <i class="fa-solid fa-paper-plane"></i> إرسال طلب الاسترجاع
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: WALLET TRANSACTIONS HISTORY -->
+  <div class="store-modal-overlay" id="walletTransactionsModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center; padding:16px;">
+    <div style="background:#fff; border-radius:var(--radius-lg); width:100%; max-width:600px; max-height:90vh; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 25px 50px -12px rgba(0,0,0,0.25);">
+      <div style="padding:18px 24px; border-bottom:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center; background:#f8fafc;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:36px; height:36px; border-radius:50%; background:#dcfce7; color:#15803d; display:flex; align-items:center; justify-content:center; font-size:1.1rem;">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          </div>
+          <h3 style="font-size:1.2rem; font-weight:800; color:#0f172a; margin:0;">سجل عمليات المحفظة الرقمية</h3>
+        </div>
+        <button type="button" onclick="StoreApp.closeWalletTransactionsModal()" style="background:transparent; border:none; font-size:1.3rem; color:#64748b; cursor:pointer;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div style="padding:20px; overflow-y:auto; flex:1;">
+        <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:14px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-size:0.8rem; color:#15803d; font-weight:700;">الرصيد الفعلي الحالي:</div>
+            <div style="font-size:1.6rem; font-weight:900; color:#166534;" id="modalWalletCurrentBalance">0.00 ر.س</div>
+          </div>
+          <span style="background:#dcfce7; color:#15803d; padding:4px 10px; border-radius:20px; font-size:0.78rem; font-weight:800;">
+            <i class="fa-solid fa-circle-check"></i> جاهز للاستخدام
+          </span>
+        </div>
+
+        <h4 style="font-size:0.95rem; font-weight:800; color:#334155; margin-bottom:10px;">كافة الحركات المالية (استرداد / مشتريات):</h4>
+        <div id="walletTransactionsList" style="display:flex; flex-direction:column; gap:8px;">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div style="padding:14px 20px; background:#f8fafc; border-top:1px solid #e2e8f0; text-align:left;">
+        <button type="button" class="btn-primary" style="padding:8px 20px; font-size:0.85rem;" onclick="StoreApp.closeWalletTransactionsModal()">إغلاق</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= AUTHENTICATION MODAL (LOGIN & REGISTER) ================= -->
+  <div class="modal-overlay" id="authModalOverlay" onclick="if(event.target === this) Auth.closeAuthModal()">
+    <div class="modal-container" style="max-width: 460px; border-radius: 16px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);">
+      <!-- Header -->
+      <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fff; padding: 22px 24px; position: relative;">
+        <button type="button" onclick="Auth.closeAuthModal()" style="position: absolute; left: 18px; top: 18px; background: rgba(255,255,255,0.1); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <img src="assets/images/logo.jpg" alt="Logo" style="width: 36px; height: 36px; border-radius: 8px;">
+          <div>
+            <h3 id="authModalTitle" style="font-size: 1.15rem; font-weight: 800; margin: 0; color: #fff;">تسجيل الدخول إلى حسابك</h3>
+            <p style="font-size: 0.78rem; color: #94a3b8; margin: 2px 0 0;">متجر النخبة السعودي - الفخامة والأصالة</p>
+          </div>
+        </div>
+        <!-- Tabs -->
+        <div style="display: flex; gap: 8px; background: rgba(255,255,255,0.08); padding: 4px; border-radius: 10px;">
+          <button type="button" id="authTabBtnLogin" class="active" onclick="Auth.switchAuthTab('login')" style="flex: 1; padding: 8px; border: none; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; background: var(--primary, #0d5c46); color: #fff;">
+            <i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول
+          </button>
+          <button type="button" id="authTabBtnRegister" onclick="Auth.switchAuthTab('register')" style="flex: 1; padding: 8px; border: none; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; background: transparent; color: #cbd5e1;">
+            <i class="fa-solid fa-user-plus"></i> إنشاء حساب جديد
+          </button>
+        </div>
+      </div>
+
+      <div style="padding: 24px;">
+        <!-- Dynamic Notice banner -->
+        <div id="authModalNotice" style="display: none; background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; margin-bottom: 18px;">
+        </div>
+
+        <!-- Alert Error/Success Message Box -->
+        <div id="authAlertBox" style="display: none; padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; margin-bottom: 18px;"></div>
+
+        <!-- TAB 1: LOGIN FORM -->
+        <form id="authLoginForm" onsubmit="event.preventDefault(); Auth.handleLoginSubmit();" style="display: block;">
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 6px;">البريد الإلكتروني <span style="color:#ef4444;">*</span></label>
+            <div style="position: relative;">
+              <i class="fa-solid fa-envelope" style="position: absolute; right: 14px; top: 12px; color: #94a3b8;"></i>
+              <input type="email" id="authLoginEmail" required placeholder="name@example.com" style="width: 100%; padding: 10px 40px 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;" autocomplete="email">
+            </div>
+          </div>
+
+          <div style="margin-bottom: 18px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 6px;">كلمة المرور <span style="color:#ef4444;">*</span></label>
+            <div style="position: relative;">
+              <i class="fa-solid fa-lock" style="position: absolute; right: 14px; top: 12px; color: #94a3b8;"></i>
+              <input type="password" id="authLoginPassword" required placeholder="أدخل كلمة المرور" style="width: 100%; padding: 10px 40px 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;" autocomplete="current-password">
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 0.82rem;">
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #475569;">
+              <input type="checkbox" id="authLoginRemember" checked> تذكرني دائماً
+            </label>
+            <span style="color: #64748b; font-size: 0.78rem;">تسجيل آمن ومشفر 100%</span>
+          </div>
+
+          <button type="submit" id="authLoginSubmitBtn" class="btn-primary" style="width: 100%; padding: 12px; font-size: 0.95rem; font-weight: 800; border-radius: 8px; justify-content: center; gap: 8px;">
+            <i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول
+          </button>
+
+          <div style="text-align: center; margin-top: 18px; font-size: 0.85rem; color: #64748b;">
+            ليس لديك حساب بعد؟
+            <a href="#" onclick="event.preventDefault(); Auth.switchAuthTab('register');" style="color: var(--primary, #0d5c46); font-weight: 800; text-decoration: underline; margin-right: 4px;">إنشاء حساب جديد</a>
+          </div>
+        </form>
+
+        <!-- TAB 2: REGISTER FORM -->
+        <form id="authRegisterForm" onsubmit="event.preventDefault(); Auth.handleRegisterSubmit();" style="display: none;">
+          <div style="margin-bottom: 14px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 6px;">الاسم الكامل <span style="color:#ef4444;">*</span></label>
+            <div style="position: relative;">
+              <i class="fa-solid fa-user" style="position: absolute; right: 14px; top: 12px; color: #94a3b8;"></i>
+              <input type="text" id="authRegName" required placeholder="مثال: محمد بن خالد العتيبي" style="width: 100%; padding: 10px 40px 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+            </div>
+          </div>
+
+          <div style="margin-bottom: 14px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 6px;">البريد الإلكتروني <span style="color:#ef4444;">*</span></label>
+            <div style="position: relative;">
+              <i class="fa-solid fa-envelope" style="position: absolute; right: 14px; top: 12px; color: #94a3b8;"></i>
+              <input type="email" id="authRegEmail" required placeholder="name@example.com" style="width: 100%; padding: 10px 40px 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;" autocomplete="email">
+            </div>
+          </div>
+
+          <div style="margin-bottom: 14px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 6px;">رقم الجوال السعودي (اختياري)</label>
+            <div style="position: relative;">
+              <i class="fa-solid fa-phone" style="position: absolute; right: 14px; top: 12px; color: #94a3b8;"></i>
+              <input type="tel" id="authRegPhone" placeholder="05XXXXXXXX" style="width: 100%; padding: 10px 40px 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+            </div>
+          </div>
+
+          <div style="margin-bottom: 18px;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 6px;">كلمة المرور (6 خانات على الأقل) <span style="color:#ef4444;">*</span></label>
+            <div style="position: relative;">
+              <i class="fa-solid fa-lock" style="position: absolute; right: 14px; top: 12px; color: #94a3b8;"></i>
+              <input type="password" id="authRegPassword" required minlength="6" placeholder="اختر كلمة مرور قوية" style="width: 100%; padding: 10px 40px 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;" autocomplete="new-password">
+            </div>
+          </div>
+
+          <button type="submit" id="authRegSubmitBtn" class="btn-primary" style="width: 100%; padding: 12px; font-size: 0.95rem; font-weight: 800; border-radius: 8px; justify-content: center; gap: 8px;">
+            <i class="fa-solid fa-user-plus"></i> إتمام إنشاء الحساب
+          </button>
+
+          <div style="text-align: center; margin-top: 18px; font-size: 0.85rem; color: #64748b;">
+            لديك حساب بالفعل؟
+            <a href="#" onclick="event.preventDefault(); Auth.switchAuthTab('login');" style="color: var(--primary, #0d5c46); font-weight: 800; text-decoration: underline; margin-right: 4px;">تسجيل الدخول</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/zatca.js"></script>
+  <script src="assets/js/db.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/store.js"></script>
+  <!-- Mobile Bottom Navigation Bar (شريط التصفح السفلي للهواتف الذكية) -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <a href="#home" class="bottom-nav-item active" onclick="StoreApp.navigateTo('home')">
+      <i class="fa-solid fa-house"></i>
+      <span>الرئيسية</span>
+    </a>
+    <a href="#productsSection" class="bottom-nav-item" onclick="var el=document.getElementById('productsSection'); if(el) el.scrollIntoView({behavior: 'smooth'});">
+      <i class="fa-solid fa-boxes-stacked"></i>
+      <span>المنتجات</span>
+    </a>
+    <button type="button" class="bottom-nav-item" onclick="StoreApp.openCartDrawer()">
+      <div style="position:relative; display:inline-block;">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="action-badge cart-count-badge" style="display:none; position:absolute; top:-6px; left:-8px;">0</span>
+      </div>
+      <span>السلة</span>
+    </button>
+    <button type="button" class="bottom-nav-item" onclick="StoreApp.showAccount()">
+      <i class="fa-regular fa-user"></i>
+      <span>حسابي</span>
+    </button>
+  </nav>
+</body>
+</html>
