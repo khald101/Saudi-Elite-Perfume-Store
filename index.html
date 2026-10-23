@@ -866,8 +866,8 @@
 
     <!-- VIEW 5: CUSTOMER ACCOUNT / PORTAL -->
     <div id="view-account" class="view-container">
-      <div class="container" style="padding:40px 0;">
-        <div style="background:#fff; border-radius:var(--radius-xl); border:1px solid var(--border-color); padding:32px; box-shadow:var(--shadow-sm);">
+      <div class="container account-page-container" style="padding:40px 0;">
+        <div class="account-card-box" style="background:#fff; border-radius:var(--radius-xl); border:1px solid var(--border-color); padding:32px; box-shadow:var(--shadow-sm);">
           <!-- Dynamic Personalized Customer Profile Card -->
           <div id="customerProfileCard" style="margin-bottom:24px;"></div>
           <div id="customerWalletCard" style="background: linear-gradient(135deg, #0d5c46 0%, #063d2e 60%, #c29b38 100%); color:#fff; border-radius:var(--radius-lg); padding:24px 28px; margin-bottom:28px; box-shadow:0 10px 25px -5px rgba(13,92,70,0.3); position:relative; overflow:hidden;">
@@ -895,9 +895,9 @@
             </div>
           </div>
 
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:18px;">
+          <div class="account-orders-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:18px;">
             <h3 style="font-size:1.25rem; font-weight:800; margin:0; display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-box" style="color:var(--primary);"></i> سجل طلباتي واسترجاعاتي الخاصة</h3>
-            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <div class="order-filters-scroll" style="display:flex; gap:8px; flex-wrap:wrap;">
               <button type="button" class="order-filter-btn active" onclick="StoreApp.setAccountOrdersFilter('all', this)" style="padding:6px 14px; border-radius:8px; border:1px solid var(--primary, #0d5c46); background:var(--primary, #0d5c46); color:#fff; font-size:0.82rem; font-weight:800; cursor:pointer;">كل طلباتي</button>
               <button type="button" class="order-filter-btn" onclick="StoreApp.setAccountOrdersFilter('active', this)" style="padding:6px 14px; border-radius:8px; border:1px solid #cbd5e1; background:#f1f5f9; color:#475569; font-size:0.82rem; font-weight:700; cursor:pointer;">قيد التنفيذ والشحن</button>
               <button type="button" class="order-filter-btn" onclick="StoreApp.setAccountOrdersFilter('completed', this)" style="padding:6px 14px; border-radius:8px; border:1px solid #cbd5e1; background:#f1f5f9; color:#475569; font-size:0.82rem; font-weight:700; cursor:pointer;">المكتملة</button>

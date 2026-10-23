@@ -1079,7 +1079,7 @@ const StoreApp = {
         name: user.name || '',
         phone: user.phone || '',
         email: user.email || '',
-        city: 'Ø§Ù„Ø±ÙŠØ§Ø¶',
+        city: 'الرياض',
         address: ''
       };
     }
@@ -1087,7 +1087,7 @@ const StoreApp = {
       name: '',
       phone: '',
       email: '',
-      city: 'Ø§Ù„Ø±ÙŠØ§Ø¶',
+      city: 'الرياض',
       address: ''
     };
   },
@@ -1360,7 +1360,7 @@ const StoreApp = {
       userId: activeUser ? activeUser.id : ('usr-guest-' + Date.now()),
       userEmail: activeUser ? activeUser.email.toLowerCase() : (document.getElementById('checkoutCustEmail') ? document.getElementById('checkoutCustEmail').value.trim().toLowerCase() : ''),
       customer: {
-        name: name || (activeUser ? activeUser.name : 'Ø¹Ù…ÙŠÙ„ Ù…ØªØ¬Ø± Ø§Ù„Ù†Ø®Ø¨Ø©'),
+        name: name || (activeUser ? activeUser.name : 'عميل متجر النخبة'),
         phone: phone || (activeUser ? activeUser.phone : ''),
         email: (activeUser && activeUser.email) ? activeUser.email : (document.getElementById('checkoutCustEmail') ? document.getElementById('checkoutCustEmail').value.trim() : `${phone}@customer.sa`),
         city,
@@ -2099,7 +2099,7 @@ const StoreApp = {
 
   showAccount() {
     if (window.Auth && !window.Auth.isLoggedIn()) {
-      window.Auth.promptLogin({ type: 'account' }, 'Ø¨ÙˆØ§Ø¨Ø© Ø­Ø³Ø§Ø¨ Ø§Ù„Ø¹Ù…ÙŠÙ„ Ù…Ø­Ù…ÙŠØ©. ÙŠØ±Ø¬Ù‰ ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ø£Ùˆ Ø¥Ù†Ø´Ø§Ø¡ Ø­Ø³Ø§Ø¨ Ø¬Ø¯ÙŠØ¯ Ù„Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø·Ù„Ø¨Ø§ØªÙƒ ÙˆÙ…Ø­ÙØ¸ØªÙƒ');
+      window.Auth.promptLogin({ type: 'account' }, 'بوابة حساب العميل محمية. يرجى تسجيل الدخول أو إنشاء حساب جديد للوصول إلى طلباتك ومحفظتك');
       return;
     }
     this.switchView('account');
@@ -2137,40 +2137,40 @@ const StoreApp = {
     });
 
     const totalSpent = myOrders.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
-    const initial = (user.name || 'Ø¹').trim().charAt(0);
+    const initial = (user.name || 'ع').trim().charAt(0);
 
     cardEl.innerHTML = `
-      <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 1.5px solid #e2e8f0; border-radius: 18px; padding: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
-        <div style="display: flex; align-items: center; gap: 16px;">
-          <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--primary, #0d5c46); color: #fff; font-size: 1.6rem; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(13,92,70,0.25);">
+      <div class="customer-profile-card">
+        <div class="customer-profile-user-info">
+          <div class="customer-avatar">
             ${initial}
           </div>
-          <div>
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
-              <h2 style="font-size: 1.35rem; font-weight: 800; margin: 0; color: var(--text-main);">${user.name}</h2>
-              <span style="background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; font-size: 0.76rem; font-weight: 800; padding: 3px 10px; border-radius: 12px;">
-                <i class="fa-solid fa-circle-check"></i> Ø¹Ù…ÙŠÙ„ Ù…ÙˆØ«Ù‚
+          <div class="customer-details">
+            <div class="customer-name-row">
+              <h2 class="customer-name">${user.name}</h2>
+              <span class="customer-verified-badge">
+                <i class="fa-solid fa-circle-check"></i> عميل موثق
               </span>
             </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.84rem; color: var(--text-muted);">
-              <span><i class="fa-solid fa-envelope" style="color: #94a3b8; margin-left: 4px;"></i> ${user.email}</span>
-              ${user.phone ? `<span><i class="fa-solid fa-phone" style="color: #94a3b8; margin-left: 4px;"></i> ${user.phone}</span>` : ''}
-              <span><i class="fa-solid fa-id-card" style="color: #94a3b8; margin-left: 4px;"></i> Ø­Ø³Ø§Ø¨ Ø§Ù„Ø¹Ù…ÙŠÙ„ Ø§Ù„Ø®Ø§Øµ</span>
+            <div class="customer-contact-row">
+              <span><i class="fa-solid fa-envelope"></i> ${user.email}</span>
+              ${user.phone ? `<span><i class="fa-solid fa-phone"></i> ${user.phone}</span>` : ''}
+              <span><i class="fa-solid fa-id-card"></i> حساب العميل الخاص</span>
             </div>
           </div>
         </div>
 
-        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
-          <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 18px; text-align: center;">
-            <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ø·Ù„Ø¨Ø§ØªÙŠ</div>
-            <div style="font-size: 1.25rem; font-weight: 800; color: var(--primary);">${myOrders.length}</div>
+        <div class="customer-profile-stats-row">
+          <div class="customer-stat-box">
+            <div class="customer-stat-label">إجمالي طلباتي</div>
+            <div class="customer-stat-val">${myOrders.length}</div>
           </div>
-          <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 18px; text-align: center;">
-            <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ù…Ø´ØªØ±ÙŠØ§ØªÙŠ</div>
-            <div style="font-size: 1.25rem; font-weight: 800; color: #059669;">${totalSpent.toFixed(2)} <span style="font-size:0.75rem;">Ø±.Ø³</span></div>
+          <div class="customer-stat-box">
+            <div class="customer-stat-label">إجمالي مشترياتي</div>
+            <div class="customer-stat-val" style="color: #059669;">${totalSpent.toFixed(2)} <span style="font-size:0.75rem;">ر.س</span></div>
           </div>
-          <button type="button" onclick="Auth.logout()" class="btn-outline" style="color: #ef4444; border-color: #fca5a5; background: #fff; padding: 10px 16px; font-size: 0.85rem; font-weight: 800; border-radius: 10px; cursor: pointer;">
-            <i class="fa-solid fa-right-from-bracket"></i> ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬
+          <button type="button" onclick="Auth.logout()" class="customer-logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
           </button>
         </div>
       </div>
@@ -2238,8 +2238,8 @@ const StoreApp = {
       container.innerHTML = `
         <div style="text-align:center; padding:36px; background:#f8fafc; border:1px dashed #cbd5e1; border-radius:12px;">
           <i class="fa-solid fa-lock" style="font-size:2.4rem; color:#94a3b8; margin-bottom:10px;"></i>
-          <h4 style="font-size:1.05rem; font-weight:800; color:var(--text-main); margin-bottom:4px;">ÙŠØ±Ø¬Ù‰ ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ù„Ø¹Ø±Ø¶ Ù„ÙˆØ­Ø© Ø¨ÙŠØ§Ù†Ø§ØªÙƒ Ø§Ù„Ø®Ø§ØµØ©</h4>
-          <button class="btn-primary" onclick="Auth.openAuthModal('login')" style="padding:8px 20px; font-size:0.88rem; margin-top:10px;">ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„</button>
+          <h4 style="font-size:1.05rem; font-weight:800; color:var(--text-main); margin-bottom:4px;">يرجى تسجيل الدخول لعرض لوحة بياناتك الخاصة</h4>
+          <button class="btn-primary" onclick="Auth.openAuthModal('login')" style="padding:8px 20px; font-size:0.88rem; margin-top:10px;">تسجيل الدخول</button>
         </div>
       `;
       return;
@@ -2266,9 +2266,9 @@ const StoreApp = {
     // Apply Tab Filtering
     const currentFilter = this.accountOrdersFilter || 'all';
     if (currentFilter === 'active') {
-      orders = orders.filter(o => o.orderStatus !== 'Ù…Ù„ØºÙŠ' && (o.shippingStatus || '') !== 'ØªÙ… Ø§Ù„ØªØ³Ù„ÙŠÙ…');
+      orders = orders.filter(o => o.orderStatus !== 'ملغي' && (o.shippingStatus || '') !== 'تم التسليم');
     } else if (currentFilter === 'completed') {
-      orders = orders.filter(o => (o.shippingStatus || '') === 'ØªÙ… Ø§Ù„ØªØ³Ù„ÙŠÙ…' || o.orderStatus === 'Ù…ÙƒØªÙ…Ù„');
+      orders = orders.filter(o => (o.shippingStatus || '') === 'تم التسليم' || o.orderStatus === 'مكتمل');
     } else if (currentFilter === 'returns') {
       orders = orders.filter(o => o.returns && o.returns.length > 0);
     }

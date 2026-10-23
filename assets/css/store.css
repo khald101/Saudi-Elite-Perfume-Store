@@ -2580,3 +2580,273 @@ img {
     font-size: 0.95rem !important;
   }
 }
+
+
+/* ==========================================================================
+   Comprehensive Responsive System & Customer Portal Styling
+   ========================================================================== */
+
+/* Customer Profile Card Component */
+.customer-profile-card {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1.5px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  transition: all 0.3s ease;
+}
+
+.customer-profile-user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1 1 320px;
+}
+
+.customer-avatar {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  border-radius: 50%;
+  background: var(--primary, #0d5c46);
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(13,92,70,0.25);
+}
+
+.customer-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.customer-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.customer-name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.customer-verified-badge {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.customer-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.customer-contact-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  word-break: break-all;
+}
+
+.customer-profile-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.customer-stat-box {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 18px;
+  text-align: center;
+  min-width: 110px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.customer-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.customer-stat-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary, #0d5c46);
+}
+
+.customer-logout-btn {
+  color: #ef4444;
+  border: 1px solid #fca5a5;
+  background: #fff;
+  padding: 10px 18px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.customer-logout-btn:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+
+/* Responsive Rules for Customer Portal & All Pages across Devices */
+@media (max-width: 992px) {
+  .customer-profile-card {
+    padding: 20px 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .account-page-container {
+    padding: 20px 0 !important;
+  }
+
+  .account-card-box {
+    padding: 18px 14px !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  .customer-profile-card {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 16px 14px !important;
+    gap: 16px !important;
+  }
+
+  .customer-profile-user-info {
+    gap: 12px !important;
+    flex: none !important;
+    width: 100% !important;
+  }
+
+  .customer-avatar {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    font-size: 1.35rem !important;
+  }
+
+  .customer-name {
+    font-size: 1.15rem !important;
+  }
+
+  .customer-contact-row {
+    font-size: 0.78rem !important;
+    gap: 8px !important;
+  }
+
+  .customer-profile-stats-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+  .customer-stat-box {
+    min-width: 0 !important;
+    padding: 8px 10px !important;
+  }
+
+  .customer-stat-val {
+    font-size: 1.15rem !important;
+  }
+
+  .customer-logout-btn {
+    grid-column: span 2 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 10px 14px !important;
+  }
+
+  #customerWalletCard {
+    padding: 18px 14px !important;
+    margin-bottom: 20px !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  #accountWalletBalance {
+    font-size: 1.9rem !important;
+  }
+
+  #customerWalletCard .btn-outline {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 10px 14px !important;
+  }
+
+  .account-orders-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  .account-orders-header h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .order-filters-scroll {
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    display: flex !important;
+    gap: 8px !important;
+    padding-bottom: 6px !important;
+    scrollbar-width: none !important;
+  }
+  .order-filters-scroll::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .order-filters-scroll .order-filter-btn {
+    flex-shrink: 0 !important;
+    padding: 7px 14px !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .customer-contact-row {
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+
+  .customer-name-row {
+    gap: 6px !important;
+  }
+
+  .customer-stat-val {
+    font-size: 1.05rem !important;
+  }
+}
